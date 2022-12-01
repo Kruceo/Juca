@@ -3,26 +3,27 @@ document.querySelectorAll('for').forEach((each) => {
     const letter = each.getAttribute('letter')
     console.log(length)
     const add = each.getAttribute('add') ?? 1
-    const child = each.children;
+    const child = each.innerHTML;
 
-
+    let original = '' + child
+    each.innerHTML = ''
     for (let i = 0; i < length; i++) {
-        let newHtml = '' + child[0].outerHTML
+        let newHtml = '' + original
         
 
         while (newHtml.indexOf("${") >=0) {
             let line = (newHtml.slice(newHtml.indexOf("${") + 2, newHtml.indexOf("}")))
-            console.log("##"+newHtml.indexOf("${"))
+           //console.log("##"+newHtml.indexOf("${"))
             let turner = new Function('let ' + letter + ' = ' + i + '; let res = ' + line + ';return res')
             let result = turner()
-            console.log(result)
+            //console.log(result)
             newHtml = newHtml.replaceAll('${' + line + '}', result)
-            console.log(newHtml)
+            //console.log(newHtml)
             
         }
-        
-
+        console.log(each.tagName)
         each.innerHTML += newHtml + '\n\n'
         // console.log(i)
     }
+    each.outerHTML = each.innerHTML
 })

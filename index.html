@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
@@ -8,13 +9,19 @@
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
     <script src='main.js'></script>
 </head>
+
 <body>
     <script>
-        let ttt = [444,222,144,555,442,234,124,334,123,414,535,123,344,234,334,123,444,535,123,342,124,343,123,441,555,123]
+
+        let ttt = ["Natubrás", "Militão", "Tiago", "Marquinhos", "Alex", "Fred", "Neymar", "Paquetá", "Vinicius", "Richarlison", 535, 123, 344, 234, 334, 123, 444, 535, 123, 342, 124, 343, 123, 441, 555, 123]
     </script>
-    <for length=10 letter="un">
-        <div>rafola ${ttt[un]}  ${ttt[un+1]}  </div>
-    </for>
+    <div>
+        <for length=10 letter="un" add="1">
+            <h2 style="font-size: ${(un+1)*10}px;font-family: monospace">&lt;${ttt[0]}/></h2>
+
+        </for>
+    </div>
     <script src="index.js"></script>
 </body>
+
 </html>
