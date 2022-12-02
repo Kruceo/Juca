@@ -1,6 +1,6 @@
-document.querySelectorAll('for').forEach((each) => {
-    const length = each.getAttribute('length')
-    const letter = each.getAttribute('letter')
+document.querySelectorAll('calc').forEach((each) => {
+    const length = each.getAttribute('length')??"1"
+    const letter = each.getAttribute('letter')??"i"
     console.log(length)
     const add = each.getAttribute('add') ?? 1
     const child = each.innerHTML;
