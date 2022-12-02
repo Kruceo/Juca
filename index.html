@@ -6,21 +6,36 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Page Title</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-    <script src='main.js'></script>
 </head>
 
 <body>
     <script>
 
-        let ttt = ["Natubrás", "Militão", "Tiago", "Marquinhos", "Alex", "Fred", "Neymar", "Paquetá", "Vinicius", "Richarlison", 535, 123, 344, 234, 334, 123, 444, 535, 123, 342, 124, 343, 123, 441, 555, 123]
+        let array = ["Natubrás", "Militão",
+            "Tiago", "Marquinhos", "Alex",
+            "Fred", "Neymar", "Paquetá",
+            "Vinicius", "Richarlison"]
     </script>
+
+    <p>{{Math.random()}}</p>
     
-    <calc>
-        <p>${Math.random()}</p>
-    </calc>
-    
-    <script src="index.js"></script>
+    <div id="grid">
+        <h3 style="font-size: {{(Math.random()*50).toFixed(0)}}px;">{{(Math.random()*40).toFixed(0)}}</h3>
+        <h1>rrara</h1>
+    </div>
+    <style>
+        #box {
+            width: 120px;
+            height: 120px;
+            background-color: #555;
+        }
+
+        #grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+    </style>
+    <script src="test.js"></script>
 </body>
 
 </html>
