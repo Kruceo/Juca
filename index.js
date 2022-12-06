@@ -11,10 +11,9 @@ document.querySelectorAll('for').forEach((each) => {
     for (let i = 0; i < length; i++) {
         let newHtml = '' + original
         
-
         while (newHtml.indexOf("{{") >=0) {
             let line = (newHtml.slice(newHtml.indexOf("{{") + 2, newHtml.indexOf("}}")))
-           //console.log("##"+newHtml.indexOf("${"))
+            //console.log("##"+newHtml.indexOf("${"))
             let turner = new Function('let ' + letter + ' = ' + i + '; let res = ' + line + ';return res')
             let result = turner()
             //console.log(result)
