@@ -18,3 +18,52 @@ for (i; i < 10; i++) {
 };
 
 console.log(resultsI[0])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+base = `
+<div for="0,2,i">
+{{"etiopia - "+i}}
+
+
+<h1>
+    rafola
+</h1>
+</div>`
+
+let y = 0;
+let resultsy = [];
+for (i; i < 10; i++) {
+    resultsy[i] = "<div for='0,2,i'>"
+    resultsy[i] += "etiopia  - " + i
+
+    let f = 0;
+    let resultsF = [];
+    for (f; f < 10; f++) {
+
+        resultsy[i] += "<h2>"
+        resultsy[i] += "gggg " + f + i
+        
+        //$NEXT$
+        resultsy[i] += "</h2>"
+    };
+    resultsy[i] += `
+    <h1>
+        rafola
+    </h1>
+    </div>`
+};
+
+console.log(resultsI[0])
