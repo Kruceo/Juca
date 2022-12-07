@@ -10,13 +10,14 @@ document.body.querySelectorAll('*').forEach(each => {
     if (each.getAttribute('for')) {
 
         let letter = each.getAttribute('for').split(';')[2]
-
+        let max = each.getAttribute('for').split(';')[1]
+        let init = each.getAttribute('for').split(';')[0]
         each.removeAttribute('for')
         base = getBase(each)
         cmd = cmd.replace('//$RESULTVAR$', '//test\n')
         cmd = cmd.replace('//$VARI$', 'let ' + letter + ' = 0;\n' +
             '\nlet results' + letter + ' = [];\n')
-        cmd = cmd.replace("//$NEXT$", `for(${letter};${letter}<3;${letter}++){\n   \n//$VARI$\n\n`)
+        cmd = cmd.replace("//$NEXT$", `for(${letter};${letter}< ${max} ;${letter}++){\n   \n//$VARI$\n\n`)
 
         while (base.indexOf('{{') >= 0) {
             base = base.replace(base.slice(base.indexOf('{{'), base.indexOf('}}') + 2),
@@ -37,6 +38,10 @@ document.body.querySelectorAll('*').forEach(each => {
         if (child.getAttribute('for')) {
 
             let letter = child.getAttribute('for').split(';')[2]
+            let max =    child.getAttribute('for').split(';')[1]
+            let init =   child.getAttribute('for').split(';')[0]
+
+
             child.removeAttribute('for')
             base = getBase(child)
             while (base.indexOf('{{') >= 0) {
@@ -49,7 +54,7 @@ document.body.querySelectorAll('*').forEach(each => {
             cmd = cmd.replace('//$RESULTVAR$', '//test\n')
             cmd = cmd.replace('//$VARI$', 'let ' + letter + ' = 0;\n' +
                 '\nlet results' + letter + ' = [];\n')
-            cmd = cmd.replace("//$NEXT$", `for(${letter};${letter}<3;${letter}++){\n//$VARI$\n   ` + '\n\n//$NEXT$\n'+ base +'}')
+            cmd = cmd.replace("//$NEXT$", `for(${letter};${letter} < ${max};${letter}++){\n//$VARI$\n   ` + '\n\n//$NEXT$\n'+ base +'}')
 
 
             cmd = '//$RESULTVAR$\n' + cmd

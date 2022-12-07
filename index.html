@@ -4,20 +4,21 @@
 <body>
     <script>
 
-        let array = ["Natubrás", "Militão",
+        let array = ["Ederson", "Militão",
             "Tiago", "Marquinhos", "Alex",
             "Fred", "Neymar", "Paquetá",
             "Vinicius", "Richarlison"]
     </script>
 
-    <div for="0;3;i">
+    <div for="0;2;i">
         {{"etiopia - "+array[i]}}
-        <h2 for="0;3;f">
+        <h2 for="0;4;f">
             {{f + ' + ' +i + ' = ' + (f + i)}}
 
-            <header for="0;3;t">
-                {{"rrr"+t}}
+            <header for="0;2;t">
+                {{"TESTE - "+t}}
             </header>
+            
         </h2>
         <h1>
             {{i}}
@@ -26,9 +27,11 @@
     <style>
         div
         {
-            width: 400px;
+            width: 500px;
             height: 500px;
-            background-color: brown;
+            border-radius: 10px;
+            padding: 10px;
+            background-color: rgb(206, 206, 206);
             margin: 10px;
         }
         h2
