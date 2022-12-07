@@ -3,41 +3,166 @@
 
 <body>
     <script>
-
-        let array = ["Ederson", "Militão",
-            "Tiago", "Marquinhos", "Alex",
-            "Fred", "Neymar", "Paquetá",
-            "Vinicius", "Richarlison"]
+        let array = [
+            { name: "Nvidia GeForce RTX 2080 Founders Edition", photo: "https://images.versus.io/objects/nvidia-geforce-rtx-2080-founders-edition.front.master.1576684641045.webp", price: 2799 },
+            { name: "Asus GeForce ROG Strix RTX 2080 Ti Gaming OC", photo: "https://images.versus.io/objects/asus-geforce-rog-strix-rtx-2080-ti-gaming-oc.front.master.1576684641045.webp", price: 3399 },
+            { name: "Gigabyte Aorus GeForce RTX 3070 Ti Master", photo: "https://images.versus.io/objects/gigabyte-aorus-geforce-rtx-3070-ti-master.front.master.1622744227615.webp", price: 3549 },
+            { name: "AMD Radeon RX 580", photo: "https://images.versus.io/objects/amd-radeon-rx-580.front.master.1576684641045.webp", price: 820 },
+            { name: "Nvidia GeForce GTX 1060", photo: "https://images.versus.io/objects/nvidia-geforce-gtx-1060.front.master.1576684641045.webp", price: 800 },
+            { name: "MSI GeForce RTX 4090 Suprim X", photo: "https://images.versus.io/objects/msi-geforce-rtx-4090-suprim-x.front.medium.1664126391317.webp", price: 15800 },
+            { name: "EVGA GeForce RTX 2080 Ti FTW3 Ultra", photo: "https://images.versus.io/objects/evga-geforce-rtx-2080-ti-ftw3-ultra.front.master.1576684641045.webp", price: 5009 },
+            { name: "Sapphire Nitro+ Radeon RX 6950 XT", photo: "https://images.versus.io/objects/sapphire-nitro-radeon-rx-6950-xt.front.master.1657661567007.webp", price: 12199 },
+            { name: "XFX HD 6950 XXX 2GB", photo: "https://images.versus.io/objects/xfx-hd-6950-xxx-2gb.front.master2x.1576684641045.webp", price: 549 } ]
     </script>
+    <header id="bar">
 
-    <div>
-        <h1></h1>
-        <h2 for="0;4;f">
-            {{f + ' + ' +f + ' = ' + (f + f)}}
+    </header>
+    <header id="content">
+        <div id="grid">
+            <div for="0;9;i" id="box">
+                <div class="img-box">
+                    <img src="{{array[i].photo}}" alt="">
+                </div>
+                <div class="txt-box">
+                    <p>
+                        {{array[i].name}}
+                    </p>
 
-            <header for="0;2;t">
-                {{"TESTE - "+t}}
-            </header>
-            <header for="0;3;g">
-                {{g}}
-            </header>
-        </h2>
+                    <h3>
+                        A vista no pix:
+                    </h3>
+                    <h1>
+                        R${{array[i].price.toFixed(2)}}
+                    </h1>
+                    <div id="cart">
+                        <img src="https://cdn-icons-png.flaticon.com/512/4379/4379575.png" alt="">
+                    </div>
+                </div>
 
-    </div>
 
+            </div>
+    </header>
     <style>
-        div {
-            width: 500px;
-            height: 500px;
-            border-radius: 10px;
-            padding: 10px;
-            background-color: rgb(206, 206, 206);
-            margin: 10px;
+        * {
+            margin: 0 auto;
+            font-family: monospace;
         }
 
-        h2 {
+        body {
+            background-color: #222;
+        }
+
+        #bar {
+            z-index: 10;
+            left: 0px;
+            top: 0px;
+            position: fixed;
+            width: 100%;
+            height: 48px;
+            margin-bottom: 48px;
+            background-color: orange;
+        }
+
+        #bar>img {
+            width: 40px;
+            position: relative;
+            top: 5px;
+            left: 5px;
+            filter: invert();
+        }
+
+        #content {
+            margin-top: 96px;
+            border-radius: 10px;
+            width: 1080px;
+            background-color: rgb(255, 255, 255);
+            display: flex;
+        }
+
+        #grid {
+            width: fit-content;
+
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            filter: drop-shadow(0px 0px 5px #0000002a);
+          
+        }
+        #box:hover{
+            scale: 1.03;
+        }
+
+        #box {
+            z-index: 1;
+            width: 220px;
+            height: 300px;
+            border-radius: 10px;
+            padding: 10px;
+            background-color: rgb(255, 255, 255);
+            margin: 10px;
+            transition: scale 100ms ease-in-out;
+        }
+
+        .txt-box {
+            background-color: rgba(0, 255, 255, 0);
+            width: 100%;
+            height: 30%;
+        }
+
+        .img-box {
+            width: 100%;
+            height: 120px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        img {
+
+            height: 80%;
+
+        }
+
+        p {
             margin: 5px;
-            background-color: bisque;
+            font-size: 15px;
+            color: rgb(255, 68, 0);
+            width: 100%;
+            height: 50px;
+        }
+
+        h1 {
+            margin: 5px;
+            font-size: 25px;
+            color: rgba(0, 0, 0, 0.8);
+            width: 100%;
+
+        }
+
+        h3 {
+            margin: 5px;
+            font-size: 11px;
+            color: rgba(0, 0, 0, 0.71);
+            width: 100%;
+
+        }
+
+        #cart {
+           
+           
+            display: flex;
+            width: 100%;
+            height: 60px;
+            justify-content: end;
+            align-items: flex-end;
+            opacity: .25;
+            filter: hue-rotate(120);
+        }
+        #cart > img
+        {   margin: 0 0 ;
+            margin-left:  calc(100%-40px)px;
+            width: 30px;
+            height: 30px;
         }
     </style>
     <script src="index.js"></script>
