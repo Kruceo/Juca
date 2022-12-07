@@ -1,48 +1,38 @@
-let i = 0;
+//$RESULTVAR$
+//test
 
-let resultsi = [];
 
+//test
 
-for(i;i<3;i++){
-   
 let f = 0;
 
 let resultsf = [];
 
 
+for (f; f < 4; f++) {
 
-for(f;f<3;f++){
-let t = 0;
+    let t = 0;
 
-let resultst = [];
+    let resultst = [];
 
-   
 
-for(t;t<3;t++){
-//$VARI$
-   
 
-//$NEXT$
-resultst += `<header>
-                ${"rrr"+t}
+    for (t; t < 2; t++) {
+        //$VARI$
+
+
+        //$NEXT$
+        resultst += `<header>
+                ${"TESTE - " + t}
             </header>
 `}
-resultsf += `<h2>
-            ${f + ' + ' +i + ' = ' + (f + i)}
+
+
+    resultsf += ` <h2>
+            ${f + ' + ' + f + ' = ' + (f + f)}
 
             ${resultst}
 
-        </h2>
-`}
+        </h2>`
 
-
-resultsi += ` <div>
-        ${"etiopia - "+array[i]}
-        ${resultsf}
-
-        <h1>
-            ${i}
-        </h1>
-    </div>`
-
-};return resultsi
+}; console.log(resultsf)

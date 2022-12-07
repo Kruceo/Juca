@@ -1,6 +1,6 @@
 document.body.querySelectorAll('*').forEach(each => {
 
-    if (each.parentElement.tagName != "BODY") { console.log('dif'); return };
+    //if (each.parentElement.tagName != "BODY") { console.log('dif'); return };
 
     let base = getBase(each)
 
@@ -30,38 +30,40 @@ document.body.querySelectorAll('*').forEach(each => {
         cmd += base
         cmd += "\n\n};return results" + letter
         cmd = '//$RESULTVAR$\n\n' + cmd
-    }
+        console.error(cmd)
 
 
-    each.querySelectorAll('*').forEach((child) => {
 
-        if (child.getAttribute('for')) {
+        each.querySelectorAll('*').forEach((child) => {
 
-            let letter = child.getAttribute('for').split(';')[2]
-            let max =    child.getAttribute('for').split(';')[1]
-            let init =   child.getAttribute('for').split(';')[0]
+            if (child.getAttribute('for')) {
+
+                let letter = child.getAttribute('for').split(';')[2]
+                let max = child.getAttribute('for').split(';')[1]
+                let init = child.getAttribute('for').split(';')[0]
 
 
-            child.removeAttribute('for')
-            base = getBase(child)
-            while (base.indexOf('{{') >= 0) {
-                base = base.replace(base.slice(base.indexOf('{{'), base.indexOf('}}') + 2),
-                    "${" + base.slice(base.indexOf('{{') + 2, base.indexOf('}}')) + "}")
+                child.removeAttribute('for')
+                base = getBase(child)
+                while (base.indexOf('{{') >= 0) {
+                    base = base.replace(base.slice(base.indexOf('{{'), base.indexOf('}}') + 2),
+                        "${" + base.slice(base.indexOf('{{') + 2, base.indexOf('}}')) + "}")
+                }
+                cmd = cmd.replace("//$NEXTCONTENT$", "\$\{results" + letter + "\}\n")
+                base = "results" + letter + " += \`" + base + '\n`'
+
+                cmd = cmd.replace('//$RESULTVAR$', '//test\n')
+                cmd = cmd.replace('//$VARI$', 'let ' + letter + ' = 0;\n' +
+                    '\nlet results' + letter + ' = [];\n')
+                cmd = cmd.replace("//$NEXT$", `for(${letter};${letter} < ${max};${letter}++){\n//$VARI$\n   ` + '\n\n//$NEXT$\n' + base + '}')
+
+
+                cmd = '//$RESULTVAR$\n' + cmd
+                console.log(cmd)
+                return
             }
-            cmd = cmd.replace("//$NEXTCONTENT$", "\$\{results" + letter + "\}\n")
-            base = "results" + letter + " += \`" + base + '\n`'
-
-            cmd = cmd.replace('//$RESULTVAR$', '//test\n')
-            cmd = cmd.replace('//$VARI$', 'let ' + letter + ' = 0;\n' +
-                '\nlet results' + letter + ' = [];\n')
-            cmd = cmd.replace("//$NEXT$", `for(${letter};${letter} < ${max};${letter}++){\n//$VARI$\n   ` + '\n\n//$NEXT$\n'+ base +'}')
-
-
-            cmd = '//$RESULTVAR$\n' + cmd
-            console.log(cmd)
-            return
-        }
-    })
+        })
+    }
     // cmd += processedBaseReturn
     console.log('----------------[RESULT]-----------------')
     // console.log(new Function(cmd)())
