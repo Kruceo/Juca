@@ -2,31 +2,39 @@ let i = 0;
 let resultsI = [];
 
 
-for (i; i < 10; i++) {
+for (i; i < 3; i++) {
 
     let f = 0;
-    let resultsF = [];
+    let resultsf = [];
+    let t = 0;
+    let resultst = [];
     //$VARI$
 
 
-    for (f; f < 10; f++) {
-        resultsF += `<rr for="0,5,f">
+    for (f; f < 3; f++) {
+        resultsf += `<h2>
             ${f + '' + i}
-
-        </rr>
+            </h2>
 
 `
 
-        //$NEXT$
+        for (t; t < 3; t++) {
+            resultst += `<h3>rafola</h3>
+
+`
+
+            //$NEXT$
+        }
     }
 
 
-    resultsI[i] += `<div for="0,2,i">
-        ${"etiopia - " + i}
-        ${resultsF}
+    resultsI += ` <div>
+        ${"etiopia - " + array[i]}
+        ${results + f}${results + t}
+        
         <h1>
             ${i}
         </h1>
     </div>`
 
-};
+}; return resultsI

@@ -2,49 +2,60 @@ document.body.querySelectorAll('*').forEach(each => {
     if (each.parentElement.tagName != "BODY") { console.log('dif'); return };
 
     let base = getBase(each)
-    let processedBaseReturn = ''
-    console.log(base)
-    console.log('-------------------------------------------------')
+    
+   
+    console.log('----------------------[START]------------------------')
     let cmd = '//$VARI$\n\n//$NEXT$'
     if (each.getAttribute('for')) {
-        cmd = cmd.replace('//$VARI$', 'let i = 0;\nlet resultsI = [];\n')
-        cmd = cmd.replace("//$NEXT$", `for(i;i<10;i++){\n   \n//$VARI$\n\n`)
+       
+        let letter = each.getAttribute('for').split(';')[2]
+
+        each.removeAttribute('for')
+        base = getBase(each)
+        cmd = cmd.replace('//$VARI$', 'let '+letter+' = 0;\nlet resultsI = [];\n')
+        cmd = cmd.replace("//$NEXT$", `for(${letter};${letter}<3;${letter}++){\n   \n//$VARI$\n\n`)
 
         while (base.indexOf('{{') >= 0) {
             base = base.replace(base.slice(base.indexOf('{{'), base.indexOf('}}') + 2),
                 "${" + base.slice(base.indexOf('{{') + 2, base.indexOf('}}')) + "}")
         }
         cmd += "\n//$NEXT$\n\n\n"
-        base = "resultsI[i] += \`" + base + '\`'
-        processedBaseReturn = base
+        base = "resultsI += \` " + base + '\`'
+    
 
 
 
         cmd += base
-        cmd += "\n\n};"
+        cmd += "\n\n};return resultsI"
     }
-    console.log(cmd)
+
     
     each.querySelectorAll('*').forEach((child) => {
-        base = getBase(child)
+        
         if (child.getAttribute('for')) {
+
+            let letter = child.getAttribute('for').split(';')[2]
+            
+            child.removeAttribute('for')
+            base = getBase(child)
             while (base.indexOf('{{') >= 0) {
                 base = base.replace(base.slice(base.indexOf('{{'), base.indexOf('}}') + 2),
                     "${" + base.slice(base.indexOf('{{') + 2, base.indexOf('}}')) + "}")
             }
-            base = "resultsF += \`" + base + '\n\n\`'
+            base = "results"+letter+" += \`" + base + '\n\n\`'
 
-            cmd = cmd.replace('//$VARI$', 'let f = 0;\nlet resultsF = [];\n//$VARI$')
-            cmd = cmd.replace("//$NEXT$", `for(f;f<10;f++){\n   `+base + '\n\n//$NEXT$\n}')
-            cmd = cmd.replace("//$NEXTCONTENT$", "\$\{resultsF\}")
+            cmd = cmd.replace('//$VARI$', 'let '+letter+' = 0;\nlet results'+letter+' = [];\n//$VARI$')
+            cmd = cmd.replace("//$NEXT$", `for(${letter};${letter}<3;${letter}++){\n   `+base + '\n\n//$NEXT$\n}')
+            cmd = cmd.replace("//$NEXTCONTENT$", "\$\{results"+letter+"\}\n")
             
             
-
+            console.log(cmd)
         }
     })
    // cmd += processedBaseReturn
-   
-    console.log(cmd)
+    console.log('----------------[RESULT]-----------------')
+    console.log(new Function(cmd)())
+    each.outerHTML += (new Function(cmd)())
 })
 
 

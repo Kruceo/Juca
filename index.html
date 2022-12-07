@@ -10,17 +10,30 @@
             "Vinicius", "Richarlison"]
     </script>
 
-    <div for="0,2,i">
-        {{"etiopia - "+i}}
-        <rr for="0,5,f">
+    <div for="0;2;i">
+        {{"etiopia - "+array[i]}}
+        <h2 for="0;5;f">
             {{f + '' +i}}
-
-        </rr>
+            <h3 for="0;5;t">{{"rrr"+t}}</h3>
+        </h2>
         <h1>
             {{i}}
         </h1>
     </div>
-
+    <style>
+        div
+        {
+            width: 400px;
+            height: 500px;
+            background-color: brown;
+            margin: 10px;
+        }
+        h2
+        {
+            margin: 5px;
+            background-color: bisque;
+        }
+    </style>
     <script src="test2.js"></script>
 </body>
 
