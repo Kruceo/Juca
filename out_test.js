@@ -1,4 +1,3 @@
-//$RESULTVAR$
 //test
 
 
@@ -25,7 +24,22 @@ for (f; f < 4; f++) {
         resultst += `<header>
                 ${"TESTE - " + t}
             </header>
-`}
+`
+    }
+    let g = 0;
+    let resultsg = [];
+    
+    for (g; g < 3; g++) {
+        //$VARI$
+
+
+        //$NEXT$
+        resultsg += `<header>
+                ${g}
+            </header>
+`
+    }
+    //$SUB-HEADER0$
 
 
     resultsf += ` <h2>
@@ -33,6 +47,12 @@ for (f; f < 4; f++) {
 
             ${resultst}
 
+            ${resultsg}
+
         </h2>`
 
-}; console.log(resultsf)
+};
+
+//$SUB-H22$
+
+return resultsf

@@ -6,9 +6,9 @@ document.body.querySelectorAll('*').forEach(each => {
 
 
     console.log('----------------------[START]------------------------')
-    let cmd = '//$RESULTVAR$\n//$VARI$\n\n//$NEXT$'
+    let cmd = null
     if (each.getAttribute('for')) {
-
+        cmd = '//$RESULTVAR$\n//$VARI$\n\n//$NEXT$'
         let letter = each.getAttribute('for').split(';')[2]
         let max = each.getAttribute('for').split(';')[1]
         let init = each.getAttribute('for').split(';')[0]
@@ -28,14 +28,14 @@ document.body.querySelectorAll('*').forEach(each => {
 
 
         cmd += base
-        cmd += "\n\n};return results" + letter
+
+        cmd += "\n\n};"
+        cmd += `\n\n//$SUB-${each.tagName + each.childElementCount}$\n\n`
+        cmd += "return results" + letter
         cmd = '//$RESULTVAR$\n\n' + cmd
-        console.error(cmd)
-
-
-
+        //-----------------------------------------------------[CHILD]--------------------------------------------------------------------
         each.querySelectorAll('*').forEach((child) => {
-
+            console.log(child.parentElement)
             if (child.getAttribute('for')) {
 
                 let letter = child.getAttribute('for').split(';')[2]
@@ -53,21 +53,37 @@ document.body.querySelectorAll('*').forEach(each => {
                 base = "results" + letter + " += \`" + base + '\n`'
 
                 cmd = cmd.replace('//$RESULTVAR$', '//test\n')
-                cmd = cmd.replace('//$VARI$', 'let ' + letter + ' = 0;\n' +
-                    '\nlet results' + letter + ' = [];\n')
-                cmd = cmd.replace("//$NEXT$", `for(${letter};${letter} < ${max};${letter}++){\n//$VARI$\n   ` + '\n\n//$NEXT$\n' + base + '}')
+
+                if (cmd.includes(`//$SUB-${child.tagName + child.childElementCount}$`)) {
+                    //cmd = cmd.replace('//$VARI$', )
+
+                    cmd = cmd.replace(`//$SUB-${child.tagName + child.childElementCount}$`,
+                        'let ' + letter + ' = 0;\n' +
+                      '\nlet results' + letter + ' = [];\n' +
+                        `for(${letter};${letter} < ${max};${letter}++){\n//$VARI$\n   ` +
+                    '\n\n//$NEXT$\n' + base + '\n}\n' + `//$SUB-${child.tagName + child.childElementCount}$`)
+                }
+                else {
+                    cmd = cmd.replace('//$VARI$', 'let ' + letter + ' = 0;\n' +
+                        '\nlet results' + letter + ' = [];\n')
+                    cmd = cmd.replace("//$NEXT$",
+                        `for(${letter};${letter} < ${max};${letter}++){\n//$VARI$\n   ` +
+                        '\n\n//$NEXT$\n' + base + '\n}\n' + `//$SUB-${child.tagName + child.childElementCount}$`)
+                }
 
 
-                cmd = '//$RESULTVAR$\n' + cmd
                 console.log(cmd)
                 return
             }
         })
     }
     // cmd += processedBaseReturn
+
+    console.log(new Function(cmd)())
     console.log('----------------[RESULT]-----------------')
-    // console.log(new Function(cmd)())
-    each.outerHTML += (new Function(cmd)())
+    if (cmd) {
+        each.outerHTML = (new Function(cmd)())
+    }
 })
 
 
