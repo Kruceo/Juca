@@ -1,40 +1,48 @@
 let i = 0;
-let resultsI = [];
+
+let resultsi = [];
 
 
-for (i; i < 3; i++) {
+for(i;i<3;i++){
+   
+let f = 0;
 
-    let f = 0;
-    let resultsf = [];
-    let t = 0;
-    let resultst = [];
-    //$VARI$
+let resultsf = [];
 
 
-    for (f; f < 3; f++) {
-        resultsf += `<h2>
-            ${f + '' + i}
-            </h2>
 
-`
+for(f;f<3;f++){
+let t = 0;
 
-        for (t; t < 3; t++) {
-            resultst += `<h3>rafola</h3>
+let resultst = [];
 
-`
+   
 
-            //$NEXT$
-        }
-    }
+for(t;t<3;t++){
+//$VARI$
+   
+
+//$NEXT$
+resultst += `<header>
+                ${"rrr"+t}
+            </header>
+`}
+resultsf += `<h2>
+            ${f + ' + ' +i + ' = ' + (f + i)}
+
+            ${resultst}
+
+        </h2>
+`}
 
 
-    resultsI += ` <div>
-        ${"etiopia - " + array[i]}
-        ${results + f}${results + t}
-        
+resultsi += ` <div>
+        ${"etiopia - "+array[i]}
+        ${resultsf}
+
         <h1>
             ${i}
         </h1>
     </div>`
 
-}; return resultsI
+};return resultsi
