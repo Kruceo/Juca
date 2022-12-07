@@ -1,29 +1,100 @@
+document.body.querySelectorAll('*').forEach(each => {
 
-document.querySelectorAll('for').forEach((each) => {
-    const length = each.getAttribute('length')??"1"
-    const letter = each.getAttribute('letter')??"i"
-    console.log(length)
-    const add = each.getAttribute('add') ?? 1
-    const child = each.innerHTML;
+    if (each.parentElement.tagName != "BODY") { console.log('dif'); return };
 
-    let original = '' + child
-    each.innerHTML = ''
-    for (let i = 0; i < length; i++) {
-        let newHtml = '' + original
-        
-        while (newHtml.indexOf("{{") >=0) {
-            let line = (newHtml.slice(newHtml.indexOf("{{") + 2, newHtml.indexOf("}}")))
-            //console.log("##"+newHtml.indexOf("${"))
-            let turner = new Function('let ' + letter + ' = ' + i + '; let res = ' + line + ';return res')
-            let result = turner()
-            //console.log(result)
-            newHtml = newHtml.replaceAll('{{' + line + '}}', result)
-            //console.log(newHtml)
-            
+    let base = getBase(each)
+
+
+    console.log('----------------------[START]------------------------')
+    let cmd = '//$RESULTVAR$\n//$VARI$\n\n//$NEXT$'
+    if (each.getAttribute('for')) {
+
+        let letter = each.getAttribute('for').split(';')[2]
+        let max = each.getAttribute('for').split(';')[1]
+        let init = each.getAttribute('for').split(';')[0]
+        each.removeAttribute('for')
+        base = getBase(each)
+        cmd = cmd.replace('//$RESULTVAR$', '//test\n')
+        cmd = cmd.replace('//$VARI$', 'let ' + letter + ' = 0;\n' +
+            '\nlet results' + letter + ' = [];\n')
+        cmd = cmd.replace("//$NEXT$", `for(${letter};${letter}< ${max} ;${letter}++){\n   \n//$VARI$\n\n`)
+
+        while (base.indexOf('{{') >= 0) {
+            base = base.replace(base.slice(base.indexOf('{{'), base.indexOf('}}') + 2),
+                "${" + base.slice(base.indexOf('{{') + 2, base.indexOf('}}')) + "}")
         }
-        console.log(each.tagName)
-        each.innerHTML += newHtml + '\n\n'
-        // console.log(i)
+        cmd += "\n//$NEXT$\n\n\n"
+        base = "results" + letter + " += \` " + base + '\`'
+
+
+        cmd += base
+        cmd += "\n\n};return results" + letter
+        cmd = '//$RESULTVAR$\n\n' + cmd
     }
-    each.outerHTML = each.innerHTML
+
+
+    each.querySelectorAll('*').forEach((child) => {
+
+        if (child.getAttribute('for')) {
+
+            let letter = child.getAttribute('for').split(';')[2]
+            let max =    child.getAttribute('for').split(';')[1]
+            let init =   child.getAttribute('for').split(';')[0]
+
+
+            child.removeAttribute('for')
+            base = getBase(child)
+            while (base.indexOf('{{') >= 0) {
+                base = base.replace(base.slice(base.indexOf('{{'), base.indexOf('}}') + 2),
+                    "${" + base.slice(base.indexOf('{{') + 2, base.indexOf('}}')) + "}")
+            }
+            cmd = cmd.replace("//$NEXTCONTENT$", "\$\{results" + letter + "\}\n")
+            base = "results" + letter + " += \`" + base + '\n`'
+
+            cmd = cmd.replace('//$RESULTVAR$', '//test\n')
+            cmd = cmd.replace('//$VARI$', 'let ' + letter + ' = 0;\n' +
+                '\nlet results' + letter + ' = [];\n')
+            cmd = cmd.replace("//$NEXT$", `for(${letter};${letter} < ${max};${letter}++){\n//$VARI$\n   ` + '\n\n//$NEXT$\n'+ base +'}')
+
+
+            cmd = '//$RESULTVAR$\n' + cmd
+            console.log(cmd)
+            return
+        }
+    })
+    // cmd += processedBaseReturn
+    console.log('----------------[RESULT]-----------------')
+    // console.log(new Function(cmd)())
+    each.outerHTML += (new Function(cmd)())
 })
+
+
+
+
+
+function getBase(element) {
+    let cloneForBase = element.cloneNode(true)
+    let i = 0
+
+    cloneForBase.querySelectorAll('*').forEach(cloneEach => {
+
+
+        if (cloneEach.getAttribute('for') && i == 0) {
+            cloneEach.outerHTML = '//$NEXTCONTENT$'
+            i++
+            return
+            //cloneEach.remove()
+        }
+        if (cloneEach.getAttribute('for') && i > 0) {
+            cloneEach.outerHTML = '//$NEXTCONTENT$'
+            i++
+            return
+            //cloneEach.remove()
+        }
+    })
+
+    let base = cloneForBase.outerHTML
+
+
+    return base
+}
