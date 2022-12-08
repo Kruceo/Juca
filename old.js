@@ -21,6 +21,8 @@ document.querySelectorAll('for').forEach((each) => {
             //console.log(newHtml)
             
         }
+
+        console.log(Math.floor(-599999))
         console.log(each.tagName)
         each.innerHTML += newHtml + '\n\n'
         // console.log(i)

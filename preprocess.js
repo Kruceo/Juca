@@ -1,11 +1,7 @@
-console.time('f')
-document.body.querySelectorAll('*')
-.forEach((each)=>
+
+console.log('oi')
+let max = (await import('./out_test')).array
+for(let t = 0;t < (await import('./out_test.js')).array.length;t ++)
 {
-    if(each.getAttribute('for'))
-    {
-    
-    }
-    console.log(each)
-})
-console.timeEnd('f')
+    console.log(t)
+}

@@ -2,25 +2,27 @@
 <html>
 
 <body>
-    <script>
-        let array = [
-            { name: "Nvidia GeForce RTX 2080 Founders Edition", photo: "https://images.versus.io/objects/nvidia-geforce-rtx-2080-founders-edition.front.master.1576684641045.webp", price: 2799         ,stars:5},
-            { name: "Asus GeForce ROG Strix RTX 2080 Ti Gaming OC", photo: "https://images.versus.io/objects/asus-geforce-rog-strix-rtx-2080-ti-gaming-oc.front.master.1576684641045.webp", price: 3399 ,stars:3},
-            { name: "Gigabyte Aorus GeForce RTX 3070 Ti Master", photo: "https://images.versus.io/objects/gigabyte-aorus-geforce-rtx-3070-ti-master.front.master.1622744227615.webp", price: 3549       ,stars:1},
-            { name: "AMD Radeon RX 580", photo: "https://images.versus.io/objects/amd-radeon-rx-580.front.master.1576684641045.webp", price: 820                                                        ,stars:5},
-            { name: "Nvidia GeForce GTX 1060", photo: "https://images.versus.io/objects/nvidia-geforce-gtx-1060.front.master.1576684641045.webp", price: 800                                            ,stars:4},
-            { name: "MSI GeForce RTX 4090 Suprim X", photo: "https://images.versus.io/objects/msi-geforce-rtx-4090-suprim-x.front.medium.1664126391317.webp", price: 15800                              ,stars:4},
-            { name: "EVGA GeForce RTX 2080 Ti FTW3 Ultra", photo: "https://images.versus.io/objects/evga-geforce-rtx-2080-ti-ftw3-ultra.front.master.1576684641045.webp", price: 5009                   ,stars:2},
-            { name: "Sapphire Nitro+ Radeon RX 6950 XT", photo: "https://images.versus.io/objects/sapphire-nitro-radeon-rx-6950-xt.front.master.1657661567007.webp", price: 12199                       ,stars:3},
-            { name: "XFX HD 6950 XXX 2GB", photo: "https://images.versus.io/objects/xfx-hd-6950-xxx-2gb.front.master2x.1576684641045.webp", price: 549                                                  ,stars:2} ,
-            { name: "XFX HD 6950 XXX 2GB", photo: "https://images.versus.io/objects/xfx-hd-6950-xxx-2gb.front.master2x.1576684641045.webp", price: 549                                                  ,stars:4} ]
+    <script type="module" name="rafa">
+        window.array = [
+        { name: "Nvidia GeForce RTX 2080 Founders Edition", photo: "https://images.versus.io/objects/nvidia-geforce-rtx-2080-founders-edition.front.master.1576684641045.webp", price: 2799         ,stars:5},
+        { name: "Asus GeForce ROG Strix RTX 2080 Ti Gaming OC", photo: "https://images.versus.io/objects/asus-geforce-rog-strix-rtx-2080-ti-gaming-oc.front.master.1576684641045.webp", price: 3399 ,stars:3},
+        { name: "Gigabyte Aorus GeForce RTX 3070 Ti Master", photo: "https://images.versus.io/objects/gigabyte-aorus-geforce-rtx-3070-ti-master.front.master.1622744227615.webp", price: 3549       ,stars:1},
+        { name: "AMD Radeon RX 580", photo: "https://images.versus.io/objects/amd-radeon-rx-580.front.master.1576684641045.webp", price: 820                                                        ,stars:5},
+        { name: "Nvidia GeForce GTX 1060", photo: "https://images.versus.io/objects/nvidia-geforce-gtx-1060.front.master.1576684641045.webp", price: 800                                            ,stars:4},
+        { name: "MSI GeForce RTX 4090 Suprim X", photo: "https://images.versus.io/objects/msi-geforce-rtx-4090-suprim-x.front.medium.1664126391317.webp", price: 15800                              ,stars:4},
+        { name: "EVGA GeForce RTX 2080 Ti FTW3 Ultra", photo: "https://images.versus.io/objects/evga-geforce-rtx-2080-ti-ftw3-ultra.front.master.1576684641045.webp", price: 5009                   ,stars:2},
+        { name: "Sapphire Nitro+ Radeon RX 6950 XT", photo: "https://images.versus.io/objects/sapphire-nitro-radeon-rx-6950-xt.front.master.1657661567007.webp", price: 12199                       ,stars:3},
+        { name: "XFX HD 6950 XXX 2GB", photo: "https://images.versus.io/objects/xfx-hd-6950-xxx-2gb.front.master2x.1576684641045.webp", price: 549                                                  ,stars:2} ,
+        { name: "XFX HD 6950 XXX 2GB", photo: "https://images.versus.io/objects/xfx-hd-6950-xxx-2gb.front.master2x.1576684641045.webp", price: 549                                                  ,stars:4} 
+    ]
     </script>
     <header id="bar">
 
     </header>
     <header id="content">
         <div id="grid">
-            <div for="0;array.length;i" id="box">
+            <script></script>
+            <div for="0;window.array.length;i" id="box">
                 <div class="img-box">
                     <img src="{{array[i].photo}}" alt="">
                 </div>
@@ -172,8 +174,8 @@
             height: 30px;
         }
     </style>
-    <script src="preprocess.js"></script>
-    <script src="index.js"></script>
+    <script src="preprocess.js" type="module"></script>
+    <script src="index.js" type="module"></script>
 </body>
 
 </html>

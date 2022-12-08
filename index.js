@@ -103,8 +103,15 @@ document.body.querySelectorAll('*').forEach(each => {
 
     //console.log(new Function(cmd)())
     // console.log('----------------[RESULT]-----------------')
+    const AsyncFunction = Object.getPrototypeOf(async function () { }).constructor;
     if (cmd) {
-        each.outerHTML = (new Function(cmd)())
+        //new syncFunction
+        (new AsyncFunction(cmd)().then(value => {
+
+            each.outerHTML = value
+        }))
+        // console.log(value)
+
     }
 })
 console.timeEnd('s')
