@@ -3,6 +3,7 @@
 
 <body>
     <script type="module" name="rafa">
+        window.dayPromo = "Christmas Offers"
         window.array = [
         { name: "Nvidia GeForce RTX 2080 Founders Edition", photo: "https://images.versus.io/objects/nvidia-geforce-rtx-2080-founders-edition.front.master.1576684641045.webp", price: 2799         ,stars:5},
         { name: "Asus GeForce ROG Strix RTX 2080 Ti Gaming OC", photo: "https://images.versus.io/objects/asus-geforce-rog-strix-rtx-2080-ti-gaming-oc.front.master.1576684641045.webp", price: 3399 ,stars:3},
@@ -17,9 +18,10 @@
     ]
     </script>
     <header id="bar">
-
+       
     </header>
     <header id="content">
+        <h1 id="promo">{{dayPromo}}</h1>
         <div id="grid">
             <script></script>
             <div for="0;window.array.length;i" id="box">
@@ -32,7 +34,7 @@
                     </p>
 
                     <h3>
-                        A vista no pix:
+                        With pix payment:
                     </h3>
                     <h1>
                         R${{array[i].price.toFixed(2)}}
@@ -80,7 +82,13 @@
             border-radius: 10px;
             width: 1080px;
             background-color: rgb(255, 255, 255);
-            display: flex;
+            display: block;
+        }
+        #promo
+        {
+            width: 100%;
+            font-size: 40px;
+            text-align: center;
         }
 
         #grid {
@@ -88,11 +96,12 @@
 
             display: grid;
             grid-template-columns: 1fr 1fr 1fr 1fr;
-            filter: drop-shadow(0px 0px 5px #0000002a);
+            
           
         }
         #box:hover{
             scale: 1.03;
+            filter: drop-shadow(0px 5px 20px #0000002a);
         }
 
         #box {
@@ -103,7 +112,7 @@
             padding: 10px;
             background-color: rgb(255, 255, 255);
             margin: 10px;
-            transition: scale 100ms ease-in-out;
+            transition: all 100ms ease-in-out;
         }
 
         .txt-box {
@@ -174,8 +183,9 @@
             height: 30px;
         }
     </style>
-    <script src="preprocess.js" type="module"></script>
+   
     <script src="index.js" type="module"></script>
+    <script src="preprocess.js" type="module"></script>
 </body>
 
 </html>

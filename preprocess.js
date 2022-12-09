@@ -1,7 +1,22 @@
+console.time('ff')
+document.body.querySelectorAll('*').forEach((each) => {
 
-console.log('oi')
-let max = (await import('./out_test')).array
-for(let t = 0;t < (await import('./out_test.js')).array.length;t ++)
-{
-    console.log(t)
-}
+    //each.innerHTML = ''
+    let newHtml = '' + each.outerHTML
+    while (newHtml.indexOf("{{") >= 0) {
+        let line = (newHtml.slice(newHtml.indexOf("{{") + 2, newHtml.indexOf("}}")))
+        //console.log("##"+newHtml.indexOf("${"))
+        let turner = new Function('let res = ' + line + ';return res')
+        let result = turner()
+        //console.log(result)
+        newHtml = newHtml.replaceAll('{{' + line + '}}', result)
+        //console.log(newHtml)
+
+    }
+
+    // console.log(i)
+    console.log(newHtml)
+    each.outerHTML = newHtml + '\n\n'
+    // each.outerHTML = each.innerHTML
+})
+console.timeEnd('ff')
