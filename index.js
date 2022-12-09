@@ -26,7 +26,7 @@ document.body.querySelectorAll('*').forEach(each => {
         each.removeAttribute('for')
         base = getBase(each)
         cmd = cmd.replace('//$RESULTVAR$', '//test\n')
-        cmd = cmd.replace('//$VARI$', 'let ' + letter + ' = 0;\n' +
+        cmd = cmd.replace('//$VARI$', 'let ' + letter + ' = '+ init+';\n' +
             '\nlet results' + letter + ' = [];\n')
         cmd = cmd.replace("//$NEXT$", `for(${letter};${letter}< ${max} ;${letter}++){\n   \n//$VARI$\n\n`)
 
@@ -46,7 +46,6 @@ document.body.querySelectorAll('*').forEach(each => {
         cmd = '//$RESULTVAR$\n\n' + cmd
         //-----------------------------------------------------[CHILD]--------------------------------------------------------------------
         each.querySelectorAll('*').forEach((child) => {
-            console.log(child.parentElement)
             if (child.getAttribute('for')) {
 
                 let newHtmls = child.getAttribute('for')
@@ -58,12 +57,9 @@ document.body.querySelectorAll('*').forEach(each => {
                 newHtmls = newHtmls.replaceAll('}}', '')
                 child.setAttribute('for', newHtmls)
 
-
-
                 let letter = child.getAttribute('for').split(';')[2]
                 let max = child.getAttribute('for').split(';')[1]
                 let init = child.getAttribute('for').split(';')[0]
-
 
                 child.removeAttribute('for')
                 base = getBase(child)
@@ -86,7 +82,7 @@ document.body.querySelectorAll('*').forEach(each => {
                         '\n\n//$NEXT$\n' + base + '\n}\n' + `//$SUB-${child.tagName + child.childElementCount}$`)
                 }
                 else {
-                    cmd = cmd.replace('//$VARI$', 'let ' + letter + ' = 0;\n' +
+                    cmd = cmd.replace('//$VARI$', 'let ' + letter + ' = '+ init+';\n' +
                         '\nlet results' + letter + ' = [];\n')
                     cmd = cmd.replace("//$NEXT$",
                         `for(${letter};${letter} < ${max};${letter}++){\n//$VARI$\n   ` +
@@ -106,10 +102,11 @@ document.body.querySelectorAll('*').forEach(each => {
     const AsyncFunction = Object.getPrototypeOf(async function () { }).constructor;
     if (cmd) {
         //new syncFunction
-        (new AsyncFunction(cmd)().then(value => {
+        console.log(cmd)
+        new AsyncFunction(cmd)().then(value => {
 
             each.outerHTML = value
-        }))
+        })
         // console.log(value)
 
     }
