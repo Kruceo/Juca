@@ -1,4 +1,4 @@
-export default function initPosProcess() {
+export default async function initPosProcess() {
     console.time('ff')
     document.body.querySelectorAll('*').forEach((each) => {
 
@@ -15,8 +15,6 @@ export default function initPosProcess() {
 
         }
 
-        // console.log(i)
-        console.log(newHtml)
         each.outerHTML = newHtml + '\n\n'
         // each.outerHTML = each.innerHTML
     })

@@ -23,8 +23,8 @@ Just write a script tag in the end of your body tag:
     ...
 
     <script type="module">
-        import preProcess from 'node_modules/juca/index.js'
-        import posProcess from 'node_modules/juca/posprocess.js'
+        import init from 'node_modules/juca/index.js'
+        init()
     </script>
 </body>
 ``` 
@@ -32,6 +32,43 @@ Just write a script tag in the end of your body tag:
 <br>
 <br> 
 
+## Using Javascript direct in your HTML
+
+You can run javascript using {{  }} in your tags:
+
+
+```html
+<body>
+
+    <script>
+        let title = "Important fake processor news!"
+        let message = "The new processor of Kruceo Inc. Will beat the clock of 6.4 GHZ in all cores."
+        let publishImg = "https://images.pexels.com/photos/40879/cpu-processor-macro-pen-40879.jpeg"
+    </script>
+
+    <h1>
+        {{ title }}
+    </h1>
+
+    <p>
+        {{ message }}
+    </p>
+
+    <img src="{{publishImg}}"></img>
+    
+    <h3>
+        Date: {{ (new Date()) }}
+    </h3>
+
+    <script type="module">
+        import init from 'node_modules/juca/index.js'
+        init()
+    </script>
+</body>
+``` 
+
 # ⚠️ Warning ⚠️
 
-Take some care with blog like server that will use pages with Juca, this can inject Javascript in page, remember to filter &lt;script> tags .
+Take some care with "blog like" website build, that will use pages with Juca, this can inject Javascript in page, remember to filter &lt;script> tags and use variables to inject the content in string type.
+
+See <a>juca.blog.example.kruceo.com</a> to a simple example to inject automatic content in your blog.

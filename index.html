@@ -92,7 +92,7 @@
         #box:hover {
             scale: 1.03;
             filter: drop-shadow(0px 5px 20px #0000002a);
-            
+            font-family: ;
         }
 
         #box {
@@ -185,25 +185,23 @@
     </style>
     <script type="module">
         
-        import juca from './index.js'
-        import posProcess from './posprocess.js'
+        import init from './index.js'
         window.loadedPoke = false
         window.dayPromo = "Pokedex"
         console.log('hello','color:red')
         async function test() {
             window.array = []
-            for (let i = 0; i < 50; i++) {
+            for (let i = 75; i < 125; i++) {
                 let res = (await fetch('https://pokeapi.co/api/v2/pokemon/' + (i + 1)))
                 let json = (await res.json())
                 window.array.push(json)
-                console.log((i + 1) + '# complete => ' + window.array[i].name)
+                //console.log((i + 1) + '# complete => ' + window.array[i + 1].name)
             }
             loadedPoke = true
         }
 
         await test()
-        await juca()
-        await posProcess()
+        init()
     </script>
     
 </body>
