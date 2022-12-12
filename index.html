@@ -12,7 +12,6 @@
     <header id="content">
         <h1 id="promo">{{window.dayPromo}}</h1>
         <div id="grid">
-            <script></script>
             <div for="0;{{(window.array.length)}};i" id="box">
                 <p> {{ window.array[i].id}}</p>
                 <div class="img-box">
@@ -33,8 +32,6 @@
                         </h1>
                     </div>
                 </div>
-
-
             </div>
     </header>
     <style>
@@ -187,19 +184,17 @@
         
         import init from './index.js'
         window.loadedPoke = false
-        window.dayPromo = "Pokedex"
+        window.dayPromo = ("Pokedex").replaceAll('{','&#123;')
         console.log('hello','color:red')
         async function test() {
             window.array = []
-            for (let i = 75; i < 125; i++) {
+            for (let i = 840; i < 850; i++) {
                 let res = (await fetch('https://pokeapi.co/api/v2/pokemon/' + (i + 1)))
                 let json = (await res.json())
                 window.array.push(json)
-                //console.log((i + 1) + '# complete => ' + window.array[i + 1].name)
             }
             loadedPoke = true
         }
-
         await test()
         init()
     </script>

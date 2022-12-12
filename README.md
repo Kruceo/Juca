@@ -66,9 +66,37 @@ You can run javascript using {{  }} in your tags:
     </script>
 </body>
 ``` 
+<br>
+<br> 
+
+## Using flow control structure
+
+Now you can run 'for' loops in html and add sub-fors in the same
+```html
+<body>
+
+    <script>
+        let list = ["1920s","1922s","1935s","1940s"]
+    </script>
+
+    <h2 for="0;list.length;i">
+        Year of {{  list[i]  }}
+    </h2>
+
+
+    <script type="module">
+        import init from 'node_modules/juca/index.js'
+        init()
+    </script>
+</body>
+``` 
+<br>
+<br> 
 
 # ⚠️ Warning ⚠️
 
 Take some care with "blog like" website build, that will use pages with Juca, this can inject Javascript in page, remember to filter &lt;script> tags and use variables to inject the content in string type.
 
-See <a>juca.blog.example.kruceo.com</a> to a simple example to inject automatic content in your blog.
+See <a>juca.blog.example.kruceo.com</a> to a simple example to inject automatic content in your blog. 
+
+

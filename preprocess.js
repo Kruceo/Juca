@@ -1,13 +1,14 @@
-console.time('s')
+
 export default async function initJuca() {
+    console.time('s')
     document.body.querySelectorAll('*').forEach(each => {
 
+        
         let base = getBase(each)
 
         //console.log('----------------------[START]------------------------')
         let cmd = null
         if (each.getAttribute('for')) {
-
             let newHtml = each.getAttribute('for')
             while (newHtml.indexOf("{{") >= 0) {
                 let line = (newHtml.slice(newHtml.indexOf("{{") + 2, newHtml.indexOf("}}")))
@@ -34,15 +35,14 @@ export default async function initJuca() {
             }
             cmd += "\n//$NEXT$\n\n\n"
             base = "results" + letter + " += \` " + base + '\`'
-
-
+        
             cmd += base
 
             cmd += "\n\n};"
             cmd += `\n\n//$SUB-${each.tagName + each.childElementCount}$\n\n`
             cmd += "return results" + letter
             cmd = '//$RESULTVAR$\n\n' + cmd
-            //-----------------------------------------------------[CHILD]--------------------------------------------------------------------
+            //-----------------------------------------------------[CHILD]---------------------------------------------------------
             each.querySelectorAll('*').forEach((child) => {
                 if (child.getAttribute('for')) {
 
@@ -68,7 +68,7 @@ export default async function initJuca() {
                     cmd = cmd.replace('//$RESULTVAR$', '//test\n')
 
                     if (cmd.includes(`//$SUB-${child.tagName + child.childElementCount}$`)) {
-            
+
                         cmd = cmd.replace(`//$SUB-${child.tagName + child.childElementCount}$`,
                             'let ' + letter + ' = 0;\n' +
                             '\nlet results' + letter + ' = [];\n' +
@@ -89,9 +89,11 @@ export default async function initJuca() {
         const AsyncFunction = Object.getPrototypeOf(async function () { }).constructor;
         if (cmd) {
             //new syncFunction
+
             new AsyncFunction(cmd)().then(value => {
 
                 each.outerHTML = value
+
             })
             // console.log(value)
 
@@ -129,3 +131,4 @@ function getBase(element) {
 
     return base
 }
+
