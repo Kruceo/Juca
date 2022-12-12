@@ -2,46 +2,35 @@
 <html>
 
 <body>
-    <script type="module" name="rafa">
-        window.dayPromo = "Christmas Offers"
-        window.array = [
-        { name: "Nvidia GeForce RTX 2080 Founders Edition", photo: "https://images.versus.io/objects/nvidia-geforce-rtx-2080-founders-edition.front.master.1576684641045.webp", price: 2799         ,stars:5},
-        { name: "Asus GeForce ROG Strix RTX 2080 Ti Gaming OC", photo: "https://images.versus.io/objects/asus-geforce-rog-strix-rtx-2080-ti-gaming-oc.front.master.1576684641045.webp", price: 3399 ,stars:3},
-        { name: "Gigabyte Aorus GeForce RTX 3070 Ti Master", photo: "https://images.versus.io/objects/gigabyte-aorus-geforce-rtx-3070-ti-master.front.master.1622744227615.webp", price: 3549       ,stars:1},
-        { name: "AMD Radeon RX 580", photo: "https://images.versus.io/objects/amd-radeon-rx-580.front.master.1576684641045.webp", price: 820                                                        ,stars:5},
-        { name: "Nvidia GeForce GTX 1060", photo: "https://images.versus.io/objects/nvidia-geforce-gtx-1060.front.master.1576684641045.webp", price: 800                                            ,stars:4},
-        { name: "MSI GeForce RTX 4090 Suprim X", photo: "https://images.versus.io/objects/msi-geforce-rtx-4090-suprim-x.front.medium.1664126391317.webp", price: 15800                              ,stars:4},
-        { name: "EVGA GeForce RTX 2080 Ti FTW3 Ultra", photo: "https://images.versus.io/objects/evga-geforce-rtx-2080-ti-ftw3-ultra.front.master.1576684641045.webp", price: 5009                   ,stars:2},
-        { name: "Sapphire Nitro+ Radeon RX 6950 XT", photo: "https://images.versus.io/objects/sapphire-nitro-radeon-rx-6950-xt.front.master.1657661567007.webp", price: 12199                       ,stars:3},
-        { name: "XFX HD 6950 XXX 2GB", photo: "https://images.versus.io/objects/xfx-hd-6950-xxx-2gb.front.master2x.1576684641045.webp", price: 549                                                  ,stars:2} ,
-        { name: "ATI Radeon HD 5670", photo: "https://images.versus.io/objects/ati-radeon-hd-5670.front.master2x.1576684641045.webp", price: 300                                                  ,stars:4} 
-    ]
+
+    <script>
+        console.log(window.array ?? 'test')
     </script>
     <header id="bar">
-       
+
     </header>
     <header id="content">
-        <h1 id="promo">{{dayPromo}}</h1>
+        <h1 id="promo">{{window.dayPromo}}</h1>
         <div id="grid">
             <script></script>
-            <div for="0;window.array.length;i" id="box">
+            <div for="0;{{(window.array.length)}};i" id="box">
+                <p> {{ window.array[i].id}}</p>
                 <div class="img-box">
-                    <img src="{{array[i].photo}}" alt="">
+                    <img src="{{ window.array[i].sprites.other['official-artwork'].front_default }}" alt="">
                 </div>
                 <div class="txt-box">
+
                     <p>
-                        {{array[i].name}}
+                        {{ window.array[i].name }}
                     </p>
 
                     <h3>
-                        With pix payment:
+                        Types:
                     </h3>
-                    <h1>
-                        R${{array[i].price.toFixed(2)}}
-                    </h1>
-                    <img id="star" for="0;{{array[i].stars}};d" src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png" alt="">
-                    <div id="cart">
-                        <img src="https://cdn-icons-png.flaticon.com/512/4379/4379575.png" alt="">
+                    <div id="types">
+                        <h1 for="0;{{window.array[i].types.length}};l">
+                            {{(window.array[i].types[l].type.name)}}
+                        </h1>
                     </div>
                 </div>
 
@@ -84,8 +73,8 @@
             background-color: rgb(255, 255, 255);
             display: block;
         }
-        #promo
-        {
+
+        #promo {
             width: 100%;
             font-size: 40px;
             text-align: center;
@@ -96,21 +85,24 @@
 
             display: grid;
             grid-template-columns: 1fr 1fr 1fr 1fr;
-            
-          
+
+
         }
-        #box:hover{
+
+        #box:hover {
             scale: 1.03;
             filter: drop-shadow(0px 5px 20px #0000002a);
+            
         }
 
         #box {
+            border: #777 solid 1px;
             z-index: 1;
             width: 220px;
             height: 300px;
             border-radius: 10px;
             padding: 10px;
-            background-color: rgb(255, 255, 255);
+            background-color: rgb(255, 255, 255); 
             margin: 10px;
             transition: all 100ms ease-in-out;
         }
@@ -142,6 +134,7 @@
             color: rgb(255, 68, 0);
             width: 100%;
             height: 50px;
+            text-transform: uppercase;
         }
 
         h1 {
@@ -161,8 +154,8 @@
         }
 
         #cart {
-           
-           
+
+
             display: flex;
             width: 100%;
             height: 40px;
@@ -171,21 +164,48 @@
             opacity: .25;
             filter: hue-rotate(120);
         }
-        #star
-        {
+
+        #star {
             width: 20px;
             height: 20px;
         }
-        #cart > img
-        {   margin: 0 0 ;
-            margin-left:  calc(100%-40px)px;
-            width: 30px;
-            height: 30px;
+        #types
+        {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
         }
+        #types>h1
+        {
+            text-align: center;
+            font-size: 17px;
+        }
+        
     </style>
-   
-    <script src="index.js" type="module"></script>
-    <script src="preprocess.js" type="module"></script>
+    <script type="module">
+        
+        import juca from './index.js'
+        import posProcess from './posprocess.js'
+        window.loadedPoke = false
+        window.dayPromo = "Pokedex"
+        console.log('hello','color:red')
+        async function test() {
+            window.array = []
+            for (let i = 0; i < 50; i++) {
+                let res = (await fetch('https://pokeapi.co/api/v2/pokemon/' + (i + 1)))
+                let json = (await res.json())
+                window.array.push(json)
+                console.log((i + 1) + '# complete => ' + window.array[i].name)
+            }
+            loadedPoke = true
+        }
+
+        await test()
+        await juca()
+        await posProcess()
+    </script>
+    
 </body>
 
 </html>
