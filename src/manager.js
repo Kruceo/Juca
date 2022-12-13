@@ -31,7 +31,7 @@ setInterval(() => {
     watchers.forEach(each => {
 
         if (!each.watch) return
-
+        
         new AsyncFunction('return ' + each.watch)().then(result => {
             if (result != each.old) {
                 each.old = result

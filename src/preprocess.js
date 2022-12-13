@@ -7,7 +7,7 @@ export default async function initJuca() {
     document.body.querySelectorAll('*').forEach(each => {
 
         elementPosIndex ++
-
+        each.setAttribute('key', elementPosIndex)
 
         let base = getBase(each)
 
@@ -15,7 +15,7 @@ export default async function initJuca() {
         let cmd = null
         if (each.getAttribute('for')) {
 
-            each.setAttribute('key', elementPosIndex)
+            
 
             //parse for attribute
             let forLines = each.getAttribute('for')
@@ -121,9 +121,6 @@ export default async function initJuca() {
     console.timeEnd('s')
 }
 
-
-
-
 function getBase(element) {
     let cloneForBase = element.cloneNode(true)
     let i = 0
@@ -131,18 +128,13 @@ function getBase(element) {
     cloneForBase.querySelectorAll('*').forEach(cloneEach => {
 
 
-        if (cloneEach.getAttribute('for') && i == 0) {
+        if (cloneEach.getAttribute('for')) {
             cloneEach.outerHTML = '//$NEXTCONTENT$'
             i++
             return
             //cloneEach.remove()
         }
-        if (cloneEach.getAttribute('for') && i > 0) {
-            cloneEach.outerHTML = '//$NEXTCONTENT$'
-            i++
-            return
-            //cloneEach.remove()
-        }
+        
     })
 
     let base = cloneForBase.outerHTML

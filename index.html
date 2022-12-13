@@ -10,7 +10,7 @@
 
     </header>
     <header id="content">
-        <h1 id="promo">{{window.dayPromo}}</h1>
+        <h1 id="promo" watch="window.dayPromo">{{window.dayPromo}}</h1>
         <div id="grid">
             <div for="0;{{(window.array.length)}};i" id="box" watch="window.array">
                 <p> {{ window.array[i].id}}</p>
