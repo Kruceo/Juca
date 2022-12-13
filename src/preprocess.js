@@ -1,3 +1,4 @@
+import { AsyncFunction } from "./lib"
 import { forsCmds } from "./manager"
 
 let elementPosIndex = 0
@@ -100,14 +101,14 @@ export default async function initJuca() {
             })
         }
 
-        const AsyncFunction = Object.getPrototypeOf(async function () { }).constructor;
+        
         if (cmd) {
             //new syncFunction
             console.log(cmd)
             new AsyncFunction(cmd)().then(value => {
 
                 each.outerHTML = value
-
+                
             })
             // console.log(value)
             forsCmds.push({elementPosIndex,cmd})

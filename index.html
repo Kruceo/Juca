@@ -186,16 +186,18 @@
         window.loadedPoke = false
         window.dayPromo = ("Pokedex").replaceAll('{','&#123;')
         console.log('hello','color:red')
-        async function test() {
+        async function test(max) {
             window.array = []
-            for (let i = 840; i < 850; i++) {
+            for (let i = 0; i < max; i++) {
                 let res = (await fetch('https://pokeapi.co/api/v2/pokemon/' + (i + 1)))
                 let json = (await res.json())
                 window.array.push(json)
             }
             loadedPoke = true
         }
-        await test()
+        await test(12)
+
+        setTimeout(()=>test(24),5000)
         init()
     </script>
     
