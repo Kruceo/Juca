@@ -10,7 +10,6 @@ export function regen(element) {
     else {
         key = element
     }
-    console.log("###" + key)
     forsCmds.forEach(each => {
         if (each.key == key) {
             let selector = document.body.querySelectorAll('[key="' + key + '"]')
@@ -25,21 +24,19 @@ export function regen(element) {
             })
         }
     })
-    
+
 }
 
 setInterval(() => {
     watchers.forEach(each => {
-        
-        if(!each.watch)return
-        
-        (new AsyncFunction('return '+each.watch)().then(result=>
-            {
-                if(result != each.old)
-                {
-                    each.old = result
-                    regen(each.key)
-                }
-            }))
+
+        if (!each.watch) return
+
+        new AsyncFunction('return ' + each.watch)().then(result => {
+            if (result != each.old) {
+                each.old = result
+                regen(each.key)
+            }
+        })
     });
 }, 33.3);

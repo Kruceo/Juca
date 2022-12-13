@@ -15,7 +15,6 @@ for (i; i < (window.array.length); i++) {
     let resultsl = [];
 
 
-
     for (l; l < window.array[i].types.length; l++) {
         //$VARI$
 

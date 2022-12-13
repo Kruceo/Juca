@@ -16,7 +16,6 @@ export default async function initJuca() {
         if (each.getAttribute('for')) {
 
             each.setAttribute('key', elementPosIndex)
-            
 
             //parse for attribute
             let forLines = each.getAttribute('for')
@@ -105,7 +104,7 @@ export default async function initJuca() {
         
         if (cmd) {
             //new syncFunction
-            console.log(cmd)
+            //console.log(cmd)
             new AsyncFunction(cmd)().then(value => {
 
                 each.outerHTML = value
@@ -115,8 +114,7 @@ export default async function initJuca() {
             
             watchers.push({key:elementPosIndex,watch:each.getAttribute('watch')??undefined})
             forsCmds.push({key:elementPosIndex,cmd})
-            console.log(forsCmds)
-            console.log(watchers)
+            
 
         }
     })

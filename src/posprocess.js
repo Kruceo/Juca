@@ -1,21 +1,15 @@
+import { AsyncFunction } from "./lib.js"
+
 export default async function initPosProcess() {
     console.time('ff')
     document.body.querySelectorAll('*').forEach((each) => {
 
-        //each.innerHTML = ''
-        let newHtml = '' + each.outerHTML
-        while (newHtml.indexOf("{{") >= 0) {
-            let line = (newHtml.slice(newHtml.indexOf("{{") + 2, newHtml.indexOf("}}")))
-            //console.log("##"+newHtml.indexOf("${"))
-            let turner = new Function('let res = ' + line + ';return res')
-            let result = turner()
-            //console.log(result)
-            newHtml = newHtml.replaceAll('{{' + line + '}}', result)
-            //console.log(newHtml)
-
+        let cmd = '' + each.outerHTML
+        while (cmd.indexOf("{{") >= 0) {
+            let line = (cmd.slice(cmd.indexOf("{{") + 2, cmd.indexOf("}}")))
+            cmd = cmd.replaceAll('{{' + line + '}}', '${' + line + '}')
         }
-
-        each.outerHTML = newHtml + '\n'
+        new AsyncFunction('return ` ' + cmd + '`')().then(result => each.outerHTML = result)
         // each.outerHTML = each.innerHTML
     })
 }
