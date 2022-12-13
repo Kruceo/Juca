@@ -8,52 +8,50 @@ let i = 0;
 let resultsi = [];
 
 
-for(i;i< window.array.length ;i++){
-   
-let d = 0;
+for (i; i < (window.array.length); i++) {
 
-let resultsd = [];
+    let l = 0;
+
+    let resultsl = [];
 
 
 
-for(d;d < array[i].stars;d++){
-//$VARI$
-   
+    for (l; l < window.array[i].types.length; l++) {
+        //$VARI$
 
-//$NEXT$
-resultsd += `<img id="star" src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png" alt="">
+
+        //$NEXT$
+        resultsl += `<h1>
+                            ${(window.array[i].types[l].type.name)}
+                        </h1>
 `
-}
-//$SUB-IMG0$
+    }
+    //$SUB-H10$
 
 
-resultsi += ` <div id="box">
+    resultsi += ` <div id="box" key="7">
+                <p> ${window.array[i].id}</p>
                 <div class="img-box">
-                    <img src="${array[i].photo}" alt="">
+                    <img src="${window.array[i].sprites.other['official-artwork'].front_default}" alt="">
                 </div>
                 <div class="txt-box">
+
                     <p>
-                        ${array[i].name}
+                        ${window.array[i].name}
                     </p>
 
                     <h3>
-                        A vista no pix:
+                        Types:
                     </h3>
-                    <h1>
-                        R$${array[i].price.toFixed(2)}
-                    </h1>
-                    ${resultsd}
+                    <div id="types">
+                        ${resultsl}
 
-                    <div id="cart">
-                        <img src="https://cdn-icons-png.flaticon.com/512/4379/4379575.png" alt="">
                     </div>
                 </div>
-
-
             </div>`
 
 };
 
-//$SUB-DIV2$
+//$SUB-DIV3$
 
 return resultsi

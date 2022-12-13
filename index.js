@@ -1,5 +1,5 @@
-import preProcess from "./preprocess.js"
-import posProcess from "./posprocess.js"
+import preProcess from "./src/preprocess.js"
+import posProcess from "./src/posprocess.js"
 
 export default async function init() {
     await preProcess() //fors and whiles derived

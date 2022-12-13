@@ -15,7 +15,7 @@ export default async function initPosProcess() {
 
         }
 
-        each.outerHTML = newHtml + '\n\n'
+        each.outerHTML = newHtml + '\n'
         // each.outerHTML = each.innerHTML
     })
 }

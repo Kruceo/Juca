@@ -1,27 +1,37 @@
+import { forsCmds } from "./manager"
 
+let elementPosIndex = 0
 export default async function initJuca() {
     console.time('s')
     document.body.querySelectorAll('*').forEach(each => {
 
-        
+        elementPosIndex ++
+
+
         let base = getBase(each)
 
         //console.log('----------------------[START]------------------------')
         let cmd = null
         if (each.getAttribute('for')) {
-            let newHtml = each.getAttribute('for')
-            while (newHtml.indexOf("{{") >= 0) {
-                let line = (newHtml.slice(newHtml.indexOf("{{") + 2, newHtml.indexOf("}}")))
-                let turner = new Function('let res = ' + line + ';return res;')
-                let result = turner()
-                newHtml = newHtml.replaceAll('{{' + line + '}}', result)
-            }
-            each.setAttribute('for', newHtml)
+
+            each.setAttribute('key', elementPosIndex)
+
+            //parse for attribute
+            let forLines = each.getAttribute('for')
+            forLines = forLines.replaceAll('{{', '')
+            forLines = forLines.replaceAll('}}', '')
+            each.setAttribute('for', forLines)
+            //end of parse for attr
+
+           
 
             cmd = '//$RESULTVAR$\n//$VARI$\n\n//$NEXT$'
             let letter = each.getAttribute('for').split(';')[2]
             let max = each.getAttribute('for').split(';')[1]
             let init = each.getAttribute('for').split(';')[0]
+
+            
+
             each.removeAttribute('for')
             base = getBase(each)
             cmd = cmd.replace('//$RESULTVAR$', '//test\n')
@@ -37,7 +47,6 @@ export default async function initJuca() {
             base = "results" + letter + " += \` " + base + '\`'
         
             cmd += base
-
             cmd += "\n\n};"
             cmd += `\n\n//$SUB-${each.tagName + each.childElementCount}$\n\n`
             cmd += "return results" + letter
@@ -46,11 +55,16 @@ export default async function initJuca() {
             each.querySelectorAll('*').forEach((child) => {
                 if (child.getAttribute('for')) {
 
-                    let newHtmls = child.getAttribute('for')
+                    
 
-                    newHtmls = newHtmls.replaceAll('{{', '')
-                    newHtmls = newHtmls.replaceAll('}}', '')
-                    child.setAttribute('for', newHtmls)
+                    //parse for attr
+                    let forLines = child.getAttribute('for')
+                    forLines = forLines.replaceAll('{{', '')
+                    forLines = forLines.replaceAll('}}', '')
+                    child.setAttribute('for', forLines)
+                    //end of parse for
+
+
 
                     let letter = child.getAttribute('for').split(';')[2]
                     let max = child.getAttribute('for').split(';')[1]
@@ -89,13 +103,15 @@ export default async function initJuca() {
         const AsyncFunction = Object.getPrototypeOf(async function () { }).constructor;
         if (cmd) {
             //new syncFunction
-
+            console.log(cmd)
             new AsyncFunction(cmd)().then(value => {
 
                 each.outerHTML = value
 
             })
             // console.log(value)
+            forsCmds.push({elementPosIndex,cmd})
+            console.log(forsCmds)
 
         }
     })
