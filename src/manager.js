@@ -1,4 +1,4 @@
-import { AsyncFunction } from "./lib"
+import { AsyncFunction } from "./lib.js"
 
 export let forsCmds = []
 

@@ -1,5 +1,5 @@
-import { AsyncFunction } from "./lib"
-import { forsCmds, watchers } from "./manager"
+import { AsyncFunction } from "./lib.js"
+import { forsCmds, watchers } from "./manager.js"
 
 let elementPosIndex = 0
 export default async function initJuca() {
