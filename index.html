@@ -7,28 +7,28 @@
         console.log(window.array ?? 'test')
     </script>
     <header id="bar">
-
+        <input type="text" id="search">
     </header>
     <header id="content">
         <h1 id="promo" watch="window.dayPromo">{{window.dayPromo}}</h1>
         <div id="grid">
-            <div for="0;{{(window.array.length)}};i" id="box" watch="window.array">
-                <p> {{ window.array[i].id}}</p>
+            <div for="0;{{(window.filter.length)}};i" id="box" watch="window.filter.length">
+                <p> {{ window.filter[i].id}}</p>
                 <div class="img-box">
-                    <img src="{{ window.array[i].sprites.other['official-artwork'].front_default }}" alt="">
+                    <img src="{{ window.filter[i].sprites.other['official-artwork'].front_default }}" alt="">
                 </div>
                 <div class="txt-box">
 
                     <p>
-                        {{ window.array[i].name }}
+                        {{ window.filter[i].name }}
                     </p>
 
                     <h3>
                         Types:
                     </h3>
                     <div id="types">
-                        <h1 for="0;{{window.array[i].types.length}};l">
-                            {{(window.array[i].types[l].type.name)}}
+                        <h1 for="0;{{window.filter[i].types.length}};l">
+                            {{(window.filter[i].types[l].type.name)}}
                         </h1>
                     </div>
                 </div>
@@ -122,7 +122,7 @@
         }
 
         img {
-            filter: invert() blur(40px) ;
+            filter: invert() ;
             height: 100%;
 
         }
@@ -199,10 +199,26 @@
             window.array = newArray
             loadedPoke = true
         }
-        await window.test(1)
-        setInterval(() => {
-            window.test(window.array.length+1)
-        }, 2000);
+        await window.test(101)
+        window.filter = window.array.filter((pok)=>
+            {
+                
+                if(pok.name.includes("")) return pok
+            })
+           
+        document.querySelector('#search').addEventListener("input",(input)=>
+        {
+            
+            window.filter = window.array.filter((pok)=>
+            {
+                
+                if(pok.name.includes(input.target.value)) return pok
+            })
+            
+           
+        })
+        
+       
         init()
     </script>
     

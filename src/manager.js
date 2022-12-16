@@ -15,13 +15,11 @@ export function regen(element) {
             let selector = document.body.querySelectorAll('[key="' + key + '"]')
             console.log(selector)
             selector.forEach((el, index) => {
-                if (index == selector.length - 1) {
-                    new AsyncFunction(each.cmd)().then(result => el.outerHTML = result)
-                }
-                else {
-                    el.remove()
-                }
+                el.remove()
+               
+               
             })
+            new AsyncFunction(each.cmd)().then(result => document.body.querySelector('key'+key).insertAdjacentHTML('beforebegin',result))
         }
     })
 

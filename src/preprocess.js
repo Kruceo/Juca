@@ -7,8 +7,9 @@ export default async function initJuca() {
     document.body.querySelectorAll('*').forEach(each => {
 
         elementPosIndex ++
-        each.setAttribute('key', elementPosIndex)
-
+        let keyComment = document.createElement('key'+elementPosIndex)
+        each.setAttribute('key',elementPosIndex)
+        each.parentElement.append(keyComment)
         let base = getBase(each)
 
         //console.log('----------------------[START]------------------------')
