@@ -1,17 +1,31 @@
-# Juca
+# **Juca**
+<br>
+<div align='center'>
+<img src="./juca.png" width=128px>
+
+<a href="https://juca.kruceo.com">📚 <strong>Example</strong></a> ╽
+<a href="https://home.kruceo.com">🧒🏼 <strong>Author</strong></a> ╽
+<a href="https://home.kruceo.com/donation">🎁 <strong>Donation</strong></a>
+</div>
+<br>
+<br>
+
 
 ## Introduction
 
 Juca is a template engine, built to automate repetitive and non-intuitive processes of implementing Javascript directly in the look of your HTML.
 
 This works on the client side, your server will send the pure html source code to the client, in the act of loading Juca, this will generate all the HTML, this works without any framework, just pure Javascript and HTML.
-
+<br>
+<br>
 ## Installation
 
 ```console
 $ npm install kruceo/juca
 ```
 
+<br>
+<br>
 
 ## Getting Started
 
@@ -97,6 +111,6 @@ Now you can run 'for' loops in html and add sub-fors in the same
 
 Take some care with "blog like" website build, that will use pages with Juca, this can inject Javascript in page, remember to filter &lt;script> tags and use variables to inject the content in string type.
 
-See <a>juca.blog.example.kruceo.com</a> to a simple example to inject automatic content in your blog. 
+See <a>juca.kruceo.com</a> to a simple example to inject automatic content in your blog. 
 
 
