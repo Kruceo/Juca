@@ -2,17 +2,13 @@
 <html>
 
 <body>
-
-    <script>
-        console.log(window.array ?? 'test')
-    </script>
     <header id="bar">
-        <input type="text" id="search">
+        <input type="text" id="search" placeholder="Search">
     </header>
     <header id="content">
         <h1 id="promo" watch="window.dayPromo">{{window.dayPromo}}</h1>
         <div id="grid">
-            <div for="0;{{(window.filter.length)}};i" id="box" watch="window.filter.length">
+            <div for="0;{{(window.filter.length)}};i" id="box" watch="window.filter.length" style="background: linear-gradient(45deg, {{ (window.colors[window.filter[i].types[0].type.name])+' 20% ,'    +(window.colors[      window.filter[i].types[1] ? window.filter[i].types[1].type.name : window.filter[i].types[0].type.name    ]    )+ ' 120%' }});">
                 <p> {{ window.filter[i].id}}</p>
                 <div class="img-box">
                     <img src="{{ window.filter[i].sprites.other['official-artwork'].front_default }}" alt="">
@@ -44,6 +40,8 @@
             background-color: #222;
         }
 
+
+        
         #bar {
             z-index: 10;
             left: 0px;
@@ -52,23 +50,30 @@
             width: 100%;
             height: 48px;
             margin-bottom: 48px;
-            background-color: orange;
-        }
+            background-color: #0D1117;
+            display: flex;
+            align-items: center;
+            justify-content: left;
+            
 
-        #bar>img {
-            width: 40px;
-            position: relative;
-            top: 5px;
-            left: 5px;
-            filter: invert();
         }
+        input
+        {
+            margin: 0px 0px 0px 10px;
+            width: 300px;
+            height: 30px;
+            border: transparent;
+            border-radius: 20px;
+            padding-left: 15px;
 
+        }
         #content {
             margin-top: 96px;
             border-radius: 10px;
             width: 1080px;
-            background-color: rgb(255, 255, 255);
+            background-color: rgb(255, 255, 255,1);
             display: block;
+            transition: all 1s ease-in-out;
         }
 
         #promo {
@@ -88,12 +93,13 @@
 
         #box:hover {
             scale: 1.03;
-            filter: drop-shadow(0px 0px 20px #0000002a);
+            
+           border: rgb(37, 37, 37) 2px solid;
             
         }
 
         #box {
-            
+            overflow: hidden;
             border: #777 solid 1px;
             z-index: 1;
             width: 220px;
@@ -115,7 +121,7 @@
         .img-box {
             width: 100%;
             height: 120px;
-            overflow: hidden;
+            
             display: flex;
             justify-content: center;
             align-items: center;
@@ -123,31 +129,43 @@
 
         img {
 
-            height: 100%;
+            z-index: -1;
+            height: 200%;
+            filter: blur(0px);
 
         }
 
         p {
+            z-index: 10;
             margin: 5px;
-            font-size: 15px;
-            color: rgb(0, 2, 120);
+            font-size: 25px;
+            color: rgb(255, 255, 255);
+            font-weight: bold;
             width: 100%;
             height: 50px;
             text-transform: uppercase;
+            filter: drop-shadow(0px 0px 15px #000000);
+            
         }
 
         h1 {
             margin: 5px;
             font-size: 25px;
-            color: rgba(0, 0, 0, 0.8);
+            color: rgba(255, 255, 255, 1);
             width: 100%;
+            
+            background-color: #00000030;
+            padding: 5px;
+            border-radius: 5px;
+            
+            
 
         }
 
         h3 {
             margin: 5px;
             font-size: 11px;
-            color: rgba(0, 0, 0, 0.71);
+            color: rgba(80, 0, 146, 0.71);
             width: 100%;
 
         }
@@ -177,6 +195,7 @@
         }
         #types>h1
         {
+            
             text-align: center;
             font-size: 17px;
         }
@@ -187,7 +206,24 @@
         import init from './index.js'
         window.loadedPoke = false
         window.dayPromo = ("test").replaceAll('{','&#123;')
-        console.log('hello','color:red')
+        window.colors = []
+        window.colors['grass'] = "#9f9"
+        window.colors['fire'] =  "#f44"
+        window.colors['flying'] =  "#ddd"
+        window.colors['bug'] =  "#939"
+        window.colors['normal'] =  "#9a5"
+        window.colors['water'] = "#99f"
+        window.colors['electric'] =   "#ff9"
+        window.colors['poison'] ="#f4f"
+        window.colors['fairy'] ="#fdf"
+        window.colors['ground'] ="#f94"
+        window.colors['fighting'] ="#d42"
+        window.colors['psychic'] ="#414"
+        window.colors['rock'] ="#777"
+        window.colors['steel'] ="#444"
+        window.colors['ice'] ="#9ef"
+        window.colors['ghost'] ="#624"
+        window.colors['dark'] ="#111"
         window.test = async (max)=> {
             let newArray = []
             for (let i = 0; i < max; i++) {
@@ -199,7 +235,7 @@
             window.array = newArray
             loadedPoke = true
         }
-        await window.test(101)
+        await window.test(201)
         window.filter = window.array.filter((pok)=>
             {
                 
