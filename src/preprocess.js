@@ -7,9 +7,10 @@ export default async function initJuca() {
     document.body.querySelectorAll('*').forEach(each => {
 
         elementPosIndex ++
-        let keyComment = document.createElement('key'+elementPosIndex)
+        let keyPosSaver = document.createElement('key'+elementPosIndex)
+        keyPosSaver.style.position = 'fixed'
         each.setAttribute('key',elementPosIndex)
-        each.parentElement.append(keyComment)
+        each.insertAdjacentElement('beforebegin',keyPosSaver)
         let base = getBase(each)
 
         //console.log('----------------------[START]------------------------')
@@ -35,6 +36,7 @@ export default async function initJuca() {
             
 
             each.removeAttribute('for')
+            
             base = getBase(each)
             cmd = cmd.replace('//$RESULTVAR$', '//test\n')
             cmd = cmd.replace('//$VARI$', 'let ' + letter + ' = ' + init + ';\n' +
