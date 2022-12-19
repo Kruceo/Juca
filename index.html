@@ -14,11 +14,11 @@
                 <p> {{ window.filter[i].id}}</p>
                 <div class="img-box">
                     <img id="img-back" loading="lazy"
-                        src="{{ window.filter[i].sprites.other['official-artwork'].front_default }}"
-                        alt="">
+                        src="test.png" alt=""
+                        style="animation: glow {{(Math.random()*(15-10))+10}}s infinite;">
 
-                </img>
-                    <img id="img-front" loading="lazy"
+                    </img>
+                    <img id="img-front"
                         src="{{ window.filter[i].sprites.other['official-artwork'].front_default }}" alt="">
                 </div>
                 <div class="txt-box">
@@ -111,9 +111,11 @@
         }
 
         #box {
+            
             overflow: hidden;
             border: #777 solid 1px;
-            z-index: 1;
+            z-index: 5;
+            
             width: 220px;
             height: 300px;
             border-radius: 10px;
@@ -140,81 +142,49 @@
         }
 
         #img-back {
-            
-            z-index: -1;
-            height: 200%;
-            filter: blur(40px) invert();
+
+            z-index:2;
+            height: 400%;
+            mix-blend-mode:exclusion;
             left: 0%;
-            position:relative;
+            position: relative;
             transform: translateX(50%);
-            animation: glow 10s infinite;
+            opacity: 0.35;
+            scale: 200%;
+            animation: glow 1s infinite;
+            
 
         }
 
         @keyframes glow {
-            0%
-            {
-                filter: blur(20px) invert();
-            }
-            10%
-            {
-                filter: blur(40px);
-            }
-            15%
-            {
-                filter: blur(30px) invert();
-            }
-            25%
-            {
-                filter: blur(50px) invert();
-            }
-            32%
-            {
-                filter: blur(40px) invert();
-            }
-            45%
-            {
-                filter: blur(30px) invert();
-            }
-            59%
-            {
-                filter: blur(12px);
-            }
-            67%
-            {
-                filter: blur(24px) invert();
-            }
-            74%
-            {
-                filter: blur(29px) invert();
-            }
-            83%
-            {
-                filter: blur(10px) invert();
-            }
-            94%
-            {
-                filter: blur(24px);
-            }
-            100%
-            {
-                filter: blur(20px) invert();
-            }
+           0%
+           {
+                transform: translateY(-30%);
+           }
+           50%
+           {
+                transform: translateY(30%);
+                
+           }
+           100%
+           {
+            transform: translateY(-30%);
+           }
+          
         }
+
         #img-front {
 
             position: relative;
-            z-index: 0;
+            z-index:1;
             height: 200%;
             left: 0%;
-            transform: translateX(-50%);
-
-
+            transform: translateX(-100%);
 
         }
 
         p {
-            z-index: 10;
+            z-index: 1;
             margin: 5px;
             font-size: 25px;
             color: rgb(255, 255, 255);
@@ -235,9 +205,6 @@
             background-color: #00000030;
             padding: 5px;
             border-radius: 5px;
-
-
-
         }
 
         h3 {
@@ -245,12 +212,9 @@
             font-size: 11px;
             color: rgba(80, 0, 146, 0.71);
             width: 100%;
-
         }
 
         #cart {
-
-
             display: flex;
             width: 100%;
             height: 40px;
@@ -323,7 +287,7 @@
             window.array = newArray
             loadedPoke = true
         }
-        await window.test(16)
+        await window.test(32)
 
         window.filter = window.array.filter((pok) => {
 
