@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
-
+<head>
+    <title>Pokedex Example | Juca </title>
+</head>
 <body>
 
     <header id="bar">
@@ -14,7 +16,7 @@
                 <p> {{ window.filter[i].id}}</p>
                 <div class="img-box">
                     <img id="img-back" loading="lazy"
-                        src="test.png" alt=""
+                        src="{{ window.filter[i].sprites.other['official-artwork'].front_default }}" alt=""
                         style="animation: glow {{(Math.random()*(15-10))+10}}s infinite;">
 
                     </img>
@@ -144,14 +146,13 @@
         #img-back {
 
             z-index:2;
-            height: 400%;
-            mix-blend-mode:darken;
+            height: 200%;
+           
             left: 0%;
             position: relative;
             transform: translateX(50%);
-            opacity: 0.25;
-            scale: 200%;
-            animation: glow 1s infinite;
+            mix-blend-mode: overlay;
+            animation: glow 1s infinite ease-in-out;
             
 
         }
@@ -159,16 +160,31 @@
         @keyframes glow {
            0%
            {
-                transform: translateY(-30%);
+                filter: blur(40px) saturate(10);
+           }
+           25%
+           {
+                filter: blur(24px) saturate(10);;
+
+                
            }
            50%
            {
-                transform: translateY(30%);
+                filter: blur(100px);
+ 
+                
+           }
+           75%
+           {
+                filter: blur(60px) saturate(10);;
+          
+              
                 
            }
            100%
            {
-            transform: translateY(-30%);
+                filter: blur(40px) saturate(10);
+                
            }
           
         }
@@ -179,7 +195,8 @@
             z-index:1;
             height: 200%;
             left: 0%;
-            transform: translateX(-100%);
+            transform: translateX(-50%);
+            opacity: 0;
 
         }
 
@@ -287,7 +304,7 @@
             window.array = newArray
             loadedPoke = true
         }
-        await window.test(32)
+        await window.test(2)
 
         window.filter = window.array.filter((pok) => {
 

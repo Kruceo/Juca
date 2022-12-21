@@ -48,20 +48,28 @@ export default async function initJuca() {
 
                 cmd = cmd.replace('//$RESULTVAR$', '//test\n')
 
-                if (cmd.includes(`//$SUB-${child.tagName + child.childElementCount}$`)) {
+                let sub_waterMark = child.parentElement 
+                let sub_mark_index = 0
+                while(sub_waterMark.tagName != 'BODY')
+                {
+                    sub_waterMark = sub_waterMark.parentElement
+                    sub_mark_index ++
+                }
+                sub_waterMark = sub_mark_index
+                if (cmd.includes(`//$SUB-${sub_waterMark}$`)) {
 
-                    cmd = cmd.replace(`//$SUB-${child.tagName + child.childElementCount}$`,
+                    cmd = cmd.replace(`//$SUB-${sub_waterMark}$`,
                         'let ' + letter + ' = 0;\n' +
                         '\nlet results' + letter + ' = [];\n' +
                         `for(${letter};${letter} < ${max};${letter}++){\n//$VARI$\n   ` +
-                        '\n\n//$NEXT$\n' + base + '\n}\n' + `//$SUB-${child.tagName + child.childElementCount}$`)
+                        '\n\n//$NEXT$\n' + base + '\n}\n' + `//$SUB-${sub_waterMark}$`)
                 }
                 else {
                     cmd = cmd.replace('//$VARI$', 'let ' + letter + ' = ' + init + ';\n' +
                         '\nlet results' + letter + ' = [];\n')
                     cmd = cmd.replace("//$NEXT$",
                         `for(${letter};${letter} < ${max};${letter}++){\n//$VARI$\n   ` +
-                        '\n\n//$NEXT$\n' + base + '\n}\n' + `//$SUB-${child.tagName + child.childElementCount}$`)
+                        '\n\n//$NEXT$\n' + base + '\n}\n' + `//$SUB-${sub_waterMark}$`)
                 }
                 if (index == 0) {
                     cmd += "return results" + letter
