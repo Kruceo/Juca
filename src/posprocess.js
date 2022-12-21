@@ -1,10 +1,11 @@
+import { conditional } from "./conditional.js"
 import { AsyncFunction } from "./lib.js"
 import { forsCmds, watchers } from "./manager.js"
 
 export default async function initPosProcess() {
     console.time('ff')
     document.body.querySelectorAll('*').forEach((each) => {
-
+        conditional(each)
         let cmd = '' + each.outerHTML
         if (cmd.indexOf('{{') > 0) {
            
