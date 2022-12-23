@@ -2,7 +2,7 @@ import { AsyncFunction } from "./lib.js"
 import { forsCmds, watchers } from "./manager.js"
 
 let elementPosIndex = 0
-export default async function initJuca() {
+export default async function preProcess() {
 
     document.body.querySelectorAll('*').forEach((each) => {
         elementPosIndex++
@@ -12,8 +12,6 @@ export default async function initJuca() {
         each.insertAdjacentElement('beforebegin', keyPosSaver)
         keyPosSaver.style.position = 'fixed'
         if(!each.getAttribute('for'))return
-
-       
 
         let chain = [each, ...each.querySelectorAll('*')]
 
@@ -30,9 +28,6 @@ export default async function initJuca() {
                 forLines = forLines.replaceAll('}}', '')
                 child.setAttribute('for', forLines)
                 //end of parse for
-
-
-
                 let letter = child.getAttribute('for').split(';')[2]
                 let max = child.getAttribute('for').split(';')[1]
                 let init = child.getAttribute('for').split(';')[0]
@@ -75,10 +70,7 @@ export default async function initJuca() {
                     cmd += "return results" + letter
                     cmd = '//$RESULTVAR$\n\n' + cmd
                 }
-            }
-
-
-            
+            }            
         })
 
         if (cmd) {
@@ -95,12 +87,7 @@ export default async function initJuca() {
             if(chain[0].getAttribute('watch'))watchers.push({ key: elementPosIndex, watch: chain[0].getAttribute('watch') ?? undefined })
             
             forsCmds.push({ key: elementPosIndex, cmd })
-
-
         }
-
-
-       
     })
     console.timeEnd('s')
 }
@@ -110,19 +97,15 @@ function getBase(element) {
     let i = 0
 
     cloneForBase.querySelectorAll('*').forEach(cloneEach => {
-
-
+        
         if (cloneEach.getAttribute('for')) {
             cloneEach.outerHTML = '//$NEXTCONTENT$'
             i++
             return
             //cloneEach.remove()
         }
-
     })
-
     let base = cloneForBase.outerHTML
-
 
     return base
 }
