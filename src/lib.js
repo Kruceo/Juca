@@ -7,3 +7,11 @@ export function hasThisAttr(ele,...attributes)
 
     return(isTrue)
 }
+
+export function getParentFrom(ele,pos)
+{
+    let par = ele
+    for(let i = 0;i < pos; i++){par = par.parentElement}
+    
+    return par
+}

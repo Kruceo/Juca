@@ -1,11 +1,14 @@
-<!DOCTYPE html>
-<html>
+
+  
 <head>
     <title>Pokedex Example | Juca </title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
 </head>
+
 <body>
 
-    <header id="bar">
+    <header id="bar" >
         <input type="text" id="search" placeholder="Search">
     </header>
     <header id="content">
@@ -20,8 +23,8 @@
                         style="animation: glow {{(Math.random()*(15-10))+10}}s infinite;">
 
                     </img>
-                    <img id="img-front"
-                        src="{{ window.filter[i].sprites.other['official-artwork'].front_default }}" alt="">
+                    <img id="img-front" src="{{ window.filter[i].sprites.other['official-artwork'].front_default }}"
+                        alt="">
                 </div>
                 <div class="txt-box">
 
@@ -33,10 +36,15 @@
                         Types:
                     </h3>
                     <div id="types">
+
+                    </div>
+
+                    <div id="types">
                         <h1 id="type-name" for="0;{{window.filter[i].types.length}};l">
                             {{ (window.filter[i].types[l].type.name) }}
                         </h1>
                     </div>
+
                 </div>
 
             </div>
@@ -113,11 +121,11 @@
         }
 
         #box {
-            
+
             overflow: hidden;
             border: #777 solid 1px;
             z-index: 5;
-            
+
             width: 220px;
             height: 300px;
             border-radius: 10px;
@@ -145,58 +153,58 @@
 
         #img-back {
 
-            z-index:2;
+            z-index: 2;
             height: 200%;
-           
+
             left: 0%;
             position: relative;
             transform: translateX(50%);
-            mix-blend-mode: overlay;
-            animation: glow 1s infinite ease-in-out;
-            
+            /* mix-blend-mode: overlay; */
+            animation: glow 1s infinite ease-in-out; */
+
 
         }
 
         @keyframes glow {
-           0%
-           {
+            0% {
                 filter: blur(40px) saturate(10);
-           }
-           25%
-           {
-                filter: blur(24px) saturate(10);;
+            }
 
-                
-           }
-           50%
-           {
+            25% {
+                filter: blur(24px) saturate(10);
+            }
+
+            50% {
                 filter: blur(100px);
- 
-                
-           }
-           75%
-           {
-                filter: blur(60px) saturate(10);;
-          
-              
-                
-           }
-           100%
-           {
+
+
+            }
+
+            75% {
+                filter: blur(60px) saturate(10);
+                ;
+
+
+
+            }
+
+            100% {
                 filter: blur(40px) saturate(10);
-                
-           }
-          
+
+            }
+
         }
 
         #img-front {
 
             position: relative;
-            z-index:1;
+            z-index: 1;
             height: 200%;
             left: 0%;
+            
             transform: translateX(-50%);
-            opacity: 0;
+            opacity: 0.89;
+            z-index: 20;
 
         }
 

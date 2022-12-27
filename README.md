@@ -1,7 +1,7 @@
 # **Juca**
 <br>
 <div align='center'>
-<img src="./juca.png" width=128px>
+<img src="./icon.png" width=128px image-rendering="pixelated">
 
 <a href="https://juca.kruceo.com">📚 <strong>Example</strong></a> ╽
 <a href="https://home.kruceo.com">🧒🏼 <strong>Author</strong></a> ╽
@@ -46,7 +46,7 @@ Just write a script tag in the end of your body tag:
 <br>
 <br> 
 
-## Using Javascript direct in your HTML
+# Instant JS in HTML
 
 You can run javascript using {{  }} in your tags:
 
@@ -83,9 +83,9 @@ You can run javascript using {{  }} in your tags:
 <br>
 <br> 
 
-## Using flow control structure
+# Using flow control structure
 
-Now you can run 'for' loops in html and add sub-fors in the same
+## For
 ```html
 <body>
 
@@ -106,6 +106,52 @@ Now you can run 'for' loops in html and add sub-fors in the same
 ``` 
 <br>
 <br> 
+
+## Foreach
+```html
+<body>
+
+    <script>
+        let list = [{effect: 'poison',time:30},{effect: 'speed',time:120},{effect: 'regeneration',time:10}]
+    </script>
+
+    <h2 foreach="list;each">
+        Potion of {{each.effect}} with {{each.time}} seconds of lifetime.
+    </h2>
+
+
+    <script type="module">
+        import init from 'node_modules/juca/index.js'
+        init()
+    </script>
+</body>
+``` 
+<br>
+<br> 
+
+# Using watch
+
+## Basic use
+
+```html
+<body>
+
+    <script>
+        let timer = 0;
+        setInterval(()=>timer++,1000)
+    </script>
+
+    <h2 watch="timer">
+        You loaded this page {{timer}} seconds ago.
+    </h2>
+
+
+    <script type="module">
+        import init from 'node_modules/juca/index.js'
+        init()
+    </script>
+</body>
+``` 
 
 # ⚠️ Warning ⚠️
 
