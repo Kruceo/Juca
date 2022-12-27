@@ -1,4 +1,4 @@
-import preProcess from "./src/foreach copy"
+import preProcess from "./src/foreach.js"
 import posProcess from "./src/posprocess.js"
 import { maskOff, maskOn } from "./src/maskStyle.js"
 maskOn()
