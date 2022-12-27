@@ -1,10 +1,12 @@
-import { AsyncFunction } from "./lib.js"
+import { AsyncFunction, hasThisAttr } from "./lib.js"
 import { forsCmds, watchers } from "./manager.js"
 
 let elementPosIndex = 0
 export default async function preProcess() {
 
     document.body.querySelectorAll('*').forEach((each) => {
+        if(!hasThisAttr(each,'foreach','for'))return
+        
         elementPosIndex++
         console.log(each.parentElement)
         each.setAttribute('key', elementPosIndex)
@@ -12,12 +14,13 @@ export default async function preProcess() {
         each.insertAdjacentElement('beforebegin', keyPosSaver)
         keyPosSaver.style.position = 'fixed'
 
-
+        
         let chain = [each, ...each.querySelectorAll('*')].sort((a, b) => a.parentElement == a.parentElement)
 
         //-----------------------------------------------------[CHILD]---------------------------------------------------------
         let cmd = '//$VARI0$\n//$NEXT0$\n'
-        chain.filter(ele => {if(ele.getAttribute('foreach')){return ele}})       
+        chain.filter(ele => {if(ele.getAttribute('foreach')){return ele}})
+
           .forEach((child, index) => {
             console.log(child.id)
             
