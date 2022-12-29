@@ -19,24 +19,24 @@ export default async function preProcess() {
     bodyElements = bodyElements.filter((ele) => {
         let is = false
         bodyElements.forEach(each => {
-            const children = [...each.children]
+            const children = [...each.querySelectorAll('[for],[foreach]')]
 
             children.forEach(child => {
-                if (ele == child) { is = true }
+
+                if (ele == child) {
+                    is = true
+                }
             })
         })
-        return !is
+        return is == false
 
     })
-    console.log(bodyElements)
 
     bodyElements.forEach((each) => {
 
 
-        let chain = [each, ...each.querySelectorAll('*')].filter(ele => {
-            return hasThisAttr(ele, 'for', 'foreach')
-        })
-        console.log(chain)
+        let chain = [each, ...each.querySelectorAll('[for],[foreach]')]
+       
         //-----------------------------------------------------[CHILD]---------------------------------------------------------
         let cmd = '//$VARI0$\n//$NEXT0$\n'
 
@@ -64,8 +64,8 @@ export default async function preProcess() {
             })
             // console.log(value)
             const key = chain[0].getAttribute('key')
-            if (chain[0].getAttribute('watch')) watchers.push({ key: key, watch: chain[0].getAttribute('watch') ?? undefined,type:"watch" })
-            console.log(watchers)
+            if (chain[0].getAttribute('watch')) watchers.push({ key: key, watch: chain[0].getAttribute('watch') ?? undefined, type: "watch" })
+            
             forsCmds.push({ key: key, cmd })
         }
     })

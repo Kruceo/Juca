@@ -1,6 +1,6 @@
 import { AsyncFunction } from "./lib.js"
 
-const verificationInterval = 33; //66 ≈ 15 tps // 33 ≈ 30 tps // 16 ≈ 60 tps
+const verificationInterval = 66; //66 ≈ 15 tps // 33 ≈ 30 tps // 16 ≈ 60 tps
 
 export let forsCmds = []
 
@@ -19,7 +19,6 @@ export function regen(element, cmd) {
             selector.forEach((el) => {
                 el.remove()
             })
-            console.warn('key' + key)
             new AsyncFunction(cmd ?? each.cmd)().then(result => document.body.querySelector('key' + key).insertAdjacentHTML('beforebegin', result))
         }
     })
@@ -38,7 +37,6 @@ export function initWatcher(){
             comparator(same).then(result => {
                 if (result.result) {
                     same.old = result.value
-                    console.log(result)
                     regen(same.key)
                 }
                 else if (same.type == 'if') {

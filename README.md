@@ -1,7 +1,7 @@
 # **Juca**
 <br>
 <div align='center'>
-<img src="./icon.png" width=128px style="image-rendering:pixelated">
+<img src="./icon.png" width=128px>
 
 
 <a href="https://juca.kruceo.com">📚 <strong>Example</strong></a> ╽
@@ -156,9 +156,10 @@ This attribute update the content all time that the selected variable change.
 </body>
 ``` 
 <br><br>
+
 ## Conditional
 
-
+watch
 ```html
 <body>
 

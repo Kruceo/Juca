@@ -9,7 +9,6 @@ export default function forFlow(child, index, currentCMD) {
     let sub_waterMark = child.parentElement
     let sub_mark_index = [0,1]
     while (sub_waterMark.tagName != 'BODY') {
-        console.log(sub_mark_index)
         if (sub_waterMark.getAttribute('for') || sub_waterMark.getAttribute('foreach')) sub_mark_index[0]++
         if(sub_mark_index[0] <= 0) sub_mark_index[1] ++ 
         sub_waterMark = sub_waterMark.parentElement
@@ -39,7 +38,7 @@ export default function forFlow(child, index, currentCMD) {
          return (((sub_mark_index[0] + (add ?? 0)) + "|" + getParentFrom(child,sub_mark_index[1]).outerHTML.length)).padStart(20, '_') 
         }
     const subhash = (add) => { return ( ((sub_mark_index[0] + (add ?? 0)) + "|" + child.outerHTML.length)).padStart(20, '_') }
-    console.log(hash("#"), subhash(1), letter)
+  
     if (cmd.includes(`//$SUB-${hash()}$`)) {
 
         cmd = cmd.replace(`//$SUB-${hash()}$`,

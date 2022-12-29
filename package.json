@@ -1,6 +1,6 @@
 {
   "name": "juca",
-  "version": "0.21.0",
+  "version": "0.20.2",
   "description": "Javascript Ultra Controller of Automation.",
   "main": "index.js",
   "scripts": {
