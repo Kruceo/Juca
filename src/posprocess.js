@@ -16,7 +16,8 @@ export default async function initPosProcess() {
             }
             cmd = 'return \` ' + cmd + '\`'
             forsCmds.push({key:each.getAttribute('key'),cmd})
-            watchers.push({ key: each.getAttribute('key'), watch:  each.getAttribute('watch') })  //add to watch list
+            watchers.push({ key: each.getAttribute('key'), watch:  each.getAttribute('watch'),type:'watch' })  //add to watch list
+            watchers.push({ key: each.getAttribute('key'), watch:  each.getAttribute('if'),type:'if' })  //add to watch list
             new AsyncFunction(cmd)().then(result => each.outerHTML = result)
         }
         // each.outerHTML = each.innerHTML

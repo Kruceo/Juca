@@ -6,8 +6,9 @@ export let forsCmds = []
 
 export let watchers = []
 
-export function regen(element) {
+export function regen(element, cmd) {
     let key = null
+
     if (typeof (element) == 'object') key = element.getAttribute('key')
     else {
         key = element
@@ -18,23 +19,32 @@ export function regen(element) {
             selector.forEach((el) => {
                 el.remove()
             })
-            new AsyncFunction(each.cmd)().then(result => document.body.querySelector('key'+key).insertAdjacentHTML('beforebegin',result))
+            console.warn('key' + key)
+            new AsyncFunction(cmd ?? each.cmd)().then(result => document.body.querySelector('key' + key).insertAdjacentHTML('beforebegin', result))
         }
     })
 }
 
-setInterval(() => {
-    watchers.forEach(each => {
-       
-        if (!each.watch) return
-        
-        new AsyncFunction('return ' + each.watch)().then(result => {
-            
-            if (result != each.old) {
-                
-                each.old = result
-                regen(each.key)
-            }
-        })
-    });
-}, verificationInterval);
+
+export function initWatcher(){
+    setInterval(() => {
+        watchers.forEach(same => {
+
+            if (!same.watch) return
+            const type = (same.type == 'watch' ? 'same.old !=' : '')
+            const line = 'return { result:(' + type + ' ' + same.watch + '), value: ' + same.watch + '}'
+
+            let comparator = (new AsyncFunction('same', line))
+            comparator(same).then(result => {
+                if (result.result) {
+                    same.old = result.value
+                    console.log(result)
+                    regen(same.key)
+                }
+                else if (same.type == 'if') {
+                    regen(same.key, 'return ""')
+                }
+            })
+        });
+    }, verificationInterval);
+}

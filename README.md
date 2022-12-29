@@ -38,7 +38,7 @@ Just write a script tag in the end of your body tag:
     ...
 
     <script type="module">
-        import init from 'node_modules/juca/index.js'
+        import init from './node_modules/juca/index.js'
         init()
     </script>
 </body>
@@ -76,7 +76,7 @@ You can run javascript using {{  }} in your tags:
     </h3>
 
     <script type="module">
-        import init from 'node_modules/juca/index.js'
+        import init from './node_modules/juca/index.js'
         init()
     </script>
 </body>
@@ -100,7 +100,7 @@ You can run javascript using {{  }} in your tags:
 
 
     <script type="module">
-        import init from 'node_modules/juca/index.js'
+        import init from './node_modules/juca/index.js'
         init()
     </script>
 </body>
@@ -122,7 +122,7 @@ You can run javascript using {{  }} in your tags:
 
 
     <script type="module">
-        import init from 'node_modules/juca/index.js'
+        import init from './node_modules/juca/index.js'
         init()
     </script>
 </body>
@@ -130,9 +130,11 @@ You can run javascript using {{  }} in your tags:
 <br>
 <br> 
 
-# Using watch
+# Updating content
 
-## Basic use
+## Watch
+
+This attribute update the content all time that the selected variable change.
 
 ```html
 <body>
@@ -148,16 +150,40 @@ You can run javascript using {{  }} in your tags:
 
 
     <script type="module">
-        import init from 'node_modules/juca/index.js'
+        import init from './node_modules/juca/index.js'
         init()
     </script>
 </body>
 ``` 
+<br><br>
+## Conditional
 
+
+```html
+<body>
+
+    <script>
+        let value = 0;
+        setInterval(()=>value++,1000)
+    </script>
+    <p>this element will show at 5.</p>
+
+    <h2 watch="timer">
+        {{value}}
+    </h2>
+
+
+    <script type="module">
+        import init from './node_modules/juca/index.js'
+        init()
+    </script>
+</body>
+``` 
+<br><br>
 # ⚠️ Warning ⚠️
 
 Take some care with "blog like" website build, that will use pages with Juca, this can inject Javascript in page, remember to filter &lt;script> tags and use variables to inject the content in string type.
 
-See <a>juca.kruceo.com</a> to a simple example to inject automatic content in your blog. 
+See the <a href="https://juca.kruceo.com">  <strong>example</strong>  </a> to a simple example to inject automatic content in your blog. 
 
 

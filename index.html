@@ -348,7 +348,7 @@
 
             window.filter = window.array.filter((pok) => {
 
-                if (pok.name.includes(input.target.value)) return pok
+                if (pok.name.includes((input.target.value+"").toLowerCase())) return pok
             })
         })
 

@@ -7,31 +7,31 @@ import { forsCmds, watchers } from "./manager.js"
 export default async function preProcess() {
     console.time('time to gen list')
     let elementPosIndex = 0
-    let bodyElements = [...document.body.querySelectorAll('*')].filter(each=>{return hasThisAttr(each,'for','foreach')})
-   
-    bodyElements = bodyElements.filter((ele)=>
-    {
-        let is = false
-        bodyElements.forEach(each=>
-        {
-            const children = [...each.children]
-
-            children.forEach(child=>
-                {
-                   if(ele == child){is = true}
-                })
-        })
-        return !is
-        
-    })
-    console.log(bodyElements)
-
-    bodyElements.forEach((each) => {
+    let bodyElements = [...document.body.querySelectorAll('*')].filter(each => {
         elementPosIndex++
         each.setAttribute('key', elementPosIndex)
         let keyPosSaver = document.createElement('key' + elementPosIndex)
         each.insertAdjacentElement('beforebegin', keyPosSaver)
         keyPosSaver.style.position = 'fixed'
+        return hasThisAttr(each, 'for', 'foreach')
+    })
+
+    bodyElements = bodyElements.filter((ele) => {
+        let is = false
+        bodyElements.forEach(each => {
+            const children = [...each.children]
+
+            children.forEach(child => {
+                if (ele == child) { is = true }
+            })
+        })
+        return !is
+
+    })
+    console.log(bodyElements)
+
+    bodyElements.forEach((each) => {
+
 
         let chain = [each, ...each.querySelectorAll('*')].filter(ele => {
             return hasThisAttr(ele, 'for', 'foreach')
@@ -63,10 +63,10 @@ export default async function preProcess() {
                 chain[0].outerHTML = value
             })
             // console.log(value)
-
-            if (chain[0].getAttribute('watch')) watchers.push({ key: elementPosIndex, watch: chain[0].getAttribute('watch') ?? undefined })
-
-            forsCmds.push({ key: elementPosIndex, cmd })
+            const key = chain[0].getAttribute('key')
+            if (chain[0].getAttribute('watch')) watchers.push({ key: key, watch: chain[0].getAttribute('watch') ?? undefined,type:"watch" })
+            console.log(watchers)
+            forsCmds.push({ key: key, cmd })
         }
     })
     console.timeEnd('time to gen list')
