@@ -15,3 +15,21 @@ export function getParentFrom(ele,pos)
     
     return par
 }
+
+export function getBase(element) {
+    let cloneForBase = element.cloneNode(true)
+    let i = 0
+
+    cloneForBase.querySelectorAll('*').forEach(cloneEach => {
+
+        if (cloneEach.getAttribute('for') || cloneEach.getAttribute('foreach')) {
+            cloneEach.outerHTML = '//$NEXTCONTENT$'
+            i++
+            return
+            //cloneEach.remove()
+        }
+    })
+    let base = cloneForBase.outerHTML
+
+    return base
+}

@@ -1,21 +1,18 @@
-
-  
 <head>
     <title>Pokedex Example | Juca </title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-
 </head>
 
-<body>
+<body style='display:none'>
 
-    <header id="bar" >
+    <header id="bar">
         <input type="text" id="search" placeholder="Search">
     </header>
     <header id="content">
         <h1 id="promo" watch="window.dayPromo">{{window.dayPromo}}</h1>
         <div id="grid">
             <div for="0;{{(window.filter.length)}};i" id="box" watch="window.filter.length"
-                style="background: linear-gradient(45deg, {{ (window.colors[window.filter[i].types[0].type.name])+' 20% ,'    +(window.colors[      window.filter[i].types[1] ? window.filter[i].types[1].type.name : window.filter[i].types[0].type.name    ]    )+ ' 120%' }});">
+                style="background: linear-gradient(45deg, {{(window.colors[window.filter[i].types[0].type.name])+' 20% , '+(window.colors[window.filter[i].types[1] ? window.filter[i].types[1].type.name : window.filter[i].types[0].type.name])+ ' 120%' }});">
                 <p> {{ window.filter[i].id}}</p>
                 <div class="img-box">
                     <img id="img-back" loading="lazy"
@@ -44,11 +41,8 @@
                             {{ (window.filter[i].types[l].type.name) }}
                         </h1>
                     </div>
-
                 </div>
-
             </div>
-
     </header>
 
     <style>
@@ -58,10 +52,9 @@
         }
 
         body {
+            
             background-color: #222;
         }
-
-
 
         #bar {
             z-index: 10;
@@ -73,28 +66,28 @@
             margin-bottom: 48px;
             background-color: #0D1117;
             display: flex;
+            
             align-items: center;
             justify-content: right;
-
-
         }
 
         input {
             color: beige;
             background-color: #222;
-            margin: 0px 10px 0px 10px;
+           
             width: 300px;
             height: 30px;
             border: transparent;
             border-radius: 20px;
             padding-left: 15px;
+            margin: 0 auto;
 
         }
 
         #content {
             margin-top: 96px;
             border-radius: 10px;
-            width: 1080px;
+            width: fit-content;
             background-color: rgb(255, 255, 255, 1);
             display: block;
             transition: all 1s ease-in-out;
@@ -109,23 +102,40 @@
         #grid {
             width: 100%;
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr;
+            grid-template-columns: 1fr;
+        }
+
+       
+        @media only screen and (min-width:600px) {
+            #grid {
+                grid-template-columns: 1fr 1fr ;
+
+            }
+            input
+            {
+                margin: 0px 10px 0px 10px;
+            }
+        }
+        @media only screen and (min-width:850px) {
+            #grid {
+                grid-template-columns: 1fr 1fr 1fr ;
+            }
+        }
+        @media only screen and (min-width:1100px) {
+            #grid {
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+            }
         }
 
         #box:hover {
-
             scale: 1.03;
-
             border: rgb(37, 37, 37) 2px solid;
-
         }
 
         #box {
-
             overflow: hidden;
             border: #777 solid 1px;
             z-index: 5;
-
             width: 220px;
             height: 300px;
             border-radius: 10px;
@@ -152,17 +162,13 @@
         }
 
         #img-back {
-
             z-index: 2;
             height: 200%;
-
             left: 0%;
             position: relative;
             transform: translateX(50%);
             /* mix-blend-mode: overlay; */
-            animation: glow 1s infinite ease-in-out; */
-
-
+            animation: glow 1s infinite ease-in-out;
         }
 
         @keyframes glow {
@@ -176,40 +182,29 @@
 
             50% {
                 filter: blur(100px);
-
-
             }
 
             75% {
                 filter: blur(60px) saturate(10);
-                ;
-
-
-
             }
 
             100% {
                 filter: blur(40px) saturate(10);
-
             }
-
         }
 
         #img-front {
-
             position: relative;
             z-index: 1;
             height: 200%;
             left: 0%;
-            
             transform: translateX(-50%);
-            opacity: 0.89;
-            z-index: 20;
-
+            opacity: 1;
+            z-index: 3;
         }
 
         p {
-            z-index: 1;
+            z-index: 10;
             margin: 5px;
             font-size: 25px;
             color: rgb(255, 255, 255);
@@ -218,7 +213,7 @@
             height: 50px;
             text-transform: uppercase;
             filter: drop-shadow(0px 0px 15px #000000);
-
+            position: relative;
         }
 
         #type-name {
@@ -226,7 +221,6 @@
             font-size: 25px;
             color: rgba(255, 255, 255, 1);
             width: 100%;
-
             background-color: #00000030;
             padding: 5px;
             border-radius: 5px;
@@ -262,7 +256,6 @@
         }
 
         #types>h1 {
-
             text-align: center;
             font-size: 17px;
         }
@@ -271,7 +264,38 @@
 
         import init from './index.js'
 
-        window.array = []
+        window.array = [{
+        
+    "height": 6,
+    "held_items": [],
+    "id": 999,
+    "is_default": true,
+    "location_area_encounters": "https://pokeapi.co/api/v2/pokemon/341/encounters",
+    "name": "loading",
+    "order": 454,
+    "past_types": [],
+    "species": {
+        "name": "corphish",
+        "url": "https://pokeapi.co/api/v2/pokemon-species/341/"
+    },
+    "sprites": {
+        "other": {
+            "official-artwork": {
+                "front_default": "https://cdn-icons-png.flaticon.com/128/455/455791.png"
+            }
+        },
+    },
+    "types": [
+        {
+            "slot": 1,
+            "type": {
+                "name": "loading",
+                "url": "https://pokeapi.co/api/v2/type/11/"
+            }
+        }
+    ],
+    "weight": 115
+}]
 
         window.loadedPoke = false
         window.dayPromo = ("test").replaceAll('{', '&#123;')
@@ -294,6 +318,7 @@
         window.colors['ghost'] = "#624"
         window.colors['dragon'] = "#399"
         window.colors['dark'] = "#111"
+        window.colors['loading'] = "#000"
         window.test = async (max) => {
             let newArray = []
             for (let i = 0; i < max; i++) {
@@ -308,11 +333,11 @@
                         id: json.id
                     })
             }
-            //console.log(JSON.stringify(newArray))
             window.array = newArray
             loadedPoke = true
+            document.querySelector('input').dispatchEvent(new Event('input'))
         }
-        await window.test(22)
+        window.test(20)
 
         window.filter = window.array.filter((pok) => {
 
@@ -325,12 +350,10 @@
 
                 if (pok.name.includes(input.target.value)) return pok
             })
-
-
         })
 
-
         init()
+        document.body.style.display = 'block'
     </script>
 
 </body>

@@ -1,7 +1,8 @@
 # **Juca**
 <br>
 <div align='center'>
-<img src="./icon.png" width=128px image-rendering="pixelated">
+<img src="./icon.png" width=128px style="image-rendering:pixelated">
+
 
 <a href="https://juca.kruceo.com">📚 <strong>Example</strong></a> ╽
 <a href="https://home.kruceo.com">🧒🏼 <strong>Author</strong></a> ╽
@@ -27,7 +28,7 @@ $ npm install kruceo/juca
 <br>
 <br>
 
-## Getting Started
+# Getting Started
 
 Just write a script tag in the end of your body tag:
 

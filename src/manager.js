@@ -1,5 +1,7 @@
 import { AsyncFunction } from "./lib.js"
 
+const verificationInterval = 33; //66 ≈ 15 tps // 33 ≈ 30 tps // 16 ≈ 60 tps
+
 export let forsCmds = []
 
 export let watchers = []
@@ -19,7 +21,6 @@ export function regen(element) {
             new AsyncFunction(each.cmd)().then(result => document.body.querySelector('key'+key).insertAdjacentHTML('beforebegin',result))
         }
     })
-
 }
 
 setInterval(() => {
@@ -30,10 +31,10 @@ setInterval(() => {
         new AsyncFunction('return ' + each.watch)().then(result => {
             
             if (result != each.old) {
-                console.log(each)
+                
                 each.old = result
                 regen(each.key)
             }
         })
     });
-}, 60);
+}, verificationInterval);
