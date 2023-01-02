@@ -1,22 +1,19 @@
+import pipe from "./internal/pipe.js"
 import { AsyncFunction } from "./lib.js"
 import { forsCmds, watchers } from "./manager.js"
+import { resolve } from "./render/single/element.js"
 
 export default async function initPosProcess() {
     console.time('ff')
     document.body.querySelectorAll('*').forEach((each) => {
-        let cmd = '' + each.outerHTML
-        if (cmd.indexOf('{{') > 0) {
-            while (cmd.indexOf("{{") >= 0) {
-                let line = (cmd.slice(cmd.indexOf("{{") + 2, cmd.indexOf("}}")))
-                cmd = cmd.replaceAll('{{' + line + '}}', '${' + line + '}')
-            }
-            cmd = 'return \` ' + cmd + '\`'
+            let cmd = resolve(each)
             forsCmds.push({key:each.getAttribute('key'),cmd})
+            if(each.getAttribute('if')||each.getAttribute('watch'))
             watchers.push({ key: each.getAttribute('key'), watch:  each.getAttribute('watch'),type:'watch' })  //add to watch list
             watchers.push({ key: each.getAttribute('key'), watch:  each.getAttribute('if'),type:'if' })  //add to watch list
-            new AsyncFunction(cmd)().then(result => each.outerHTML = result)
-        }
+            pipe(each)
+        })
         // each.outerHTML = each.innerHTML
-    })
+    }
     console.timeEnd('ff')
-}
+

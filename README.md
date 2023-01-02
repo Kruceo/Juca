@@ -159,7 +159,6 @@ This attribute update the content all time that the selected variable change.
 
 ## Conditional
 
-watch
 ```html
 <body>
 
@@ -181,6 +180,23 @@ watch
 </body>
 ``` 
 <br><br>
+
+# Transporting data
+
+## Pipe
+
+pipe can reference the same element that has this attribute and can run JS with its own content:
+
+```html
+<input type="text" pipe="window.myName = same.value">
+```
+
+📚 To test:
+
+```js
+setInterval(()=>{console.log(window.myName)},1000)
+```
+
 # ⚠️ Warning ⚠️
 
 Take some care with "blog like" website build, that will use pages with Juca, this can inject Javascript in page, remember to filter &lt;script> tags and use variables to inject the content in string type.

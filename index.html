@@ -52,7 +52,7 @@
         }
 
         body {
-            
+
             background-color: #222;
         }
 
@@ -66,7 +66,7 @@
             margin-bottom: 48px;
             background-color: #0D1117;
             display: flex;
-            
+
             align-items: center;
             justify-content: right;
         }
@@ -74,7 +74,7 @@
         input {
             color: beige;
             background-color: #222;
-           
+
             width: 300px;
             height: 30px;
             border: transparent;
@@ -105,22 +105,24 @@
             grid-template-columns: 1fr;
         }
 
-       
+
         @media only screen and (min-width:600px) {
             #grid {
-                grid-template-columns: 1fr 1fr ;
+                grid-template-columns: 1fr 1fr;
 
             }
-            input
-            {
+
+            input {
                 margin: 0px 10px 0px 10px;
             }
         }
+
         @media only screen and (min-width:850px) {
             #grid {
-                grid-template-columns: 1fr 1fr 1fr ;
+                grid-template-columns: 1fr 1fr 1fr;
             }
         }
+
         @media only screen and (min-width:1100px) {
             #grid {
                 grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -144,7 +146,7 @@
             margin: 10px;
             transition: all 100ms ease-in-out;
             animation: intro 500ms cubic-bezier(0.0, 0.55, 0.55, 0.6);
-            
+
         }
 
         .txt-box {
@@ -265,39 +267,7 @@
 
         import init from './index.js'
 
-        window.array = [{
-        
-    "height": 6,
-    "held_items": [],
-    "id": 999,
-    "is_default": true,
-    "location_area_encounters": "https://pokeapi.co/api/v2/pokemon/341/encounters",
-    "name": "loading",
-    "order": 454,
-    "past_types": [],
-    "species": {
-        "name": "corphish",
-        "url": "https://pokeapi.co/api/v2/pokemon-species/341/"
-    },
-    "sprites": {
-        "other": {
-            "official-artwork": {
-                "front_default": "https://cdn-icons-png.flaticon.com/128/455/455791.png"
-            }
-        },
-    },
-    "types": [
-        {
-            "slot": 1,
-            "type": {
-                "name": "loading",
-                "url": "https://pokeapi.co/api/v2/type/11/"
-            }
-        }
-    ],
-    "weight": 115
-}]
-
+        window.array = []
         window.loadedPoke = false
         window.dayPromo = ("test").replaceAll('{', '&#123;')
         window.colors = []
@@ -338,7 +308,7 @@
             loadedPoke = true
             document.querySelector('input').dispatchEvent(new Event('input'))
         }
-        window.test(20)
+        window.test(24)
 
         window.filter = window.array.filter((pok) => {
 
@@ -349,7 +319,7 @@
 
             window.filter = window.array.filter((pok) => {
 
-                if (pok.name.includes((input.target.value+"").toLowerCase())) return pok
+                if (pok.name.includes((input.target.value + "").toLowerCase())) return pok
             })
         })
 

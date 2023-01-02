@@ -65,7 +65,7 @@ export default async function preProcess() {
             // console.log(value)
             const key = chain[0].getAttribute('key')
             if (chain[0].getAttribute('watch')) watchers.push({ key: key, watch: chain[0].getAttribute('watch') ?? undefined, type: "watch" })
-            
+            if (chain[0].getAttribute('if'))    watchers.push({ key: key, watch: chain[0].getAttribute('if')    ?? undefined, type: 'if' })  //add to watch list
             forsCmds.push({ key: key, cmd })
         }
     })
