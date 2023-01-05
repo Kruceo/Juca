@@ -166,12 +166,11 @@ This attribute update the content all time that the selected variable change.
         let value = 0;
         setInterval(()=>value++,1000)
     </script>
-    <p>this element will show at 5.</p>
+    <p>the element will show at 5.</p>
 
-    <h2 watch="timer">
+    <h2 if="timer >= 5">
         {{value}}
     </h2>
-
 
     <script type="module">
         import init from './node_modules/juca/index.js'
@@ -179,13 +178,14 @@ This attribute update the content all time that the selected variable change.
     </script>
 </body>
 ``` 
+ℹ️ If you use the "if" attribute then you don't need to use watch to refresh content.
 <br><br>
 
 # Transporting data
 
 ## Pipe
 
-pipe can reference the same element that has this attribute and can run JS with its own content:
+Pipe can reference the same element that has this attribute and can run JS with its own content:
 
 ```html
 <input type="text" pipe="window.myName = same.value">
@@ -196,7 +196,7 @@ pipe can reference the same element that has this attribute and can run JS with 
 ```js
 setInterval(()=>{console.log(window.myName)},1000)
 ```
-
+<br><br>
 # ⚠️ Warning ⚠️
 
 Take some care with "blog like" website build, that will use pages with Juca, this can inject Javascript in page, remember to filter &lt;script> tags and use variables to inject the content in string type.
