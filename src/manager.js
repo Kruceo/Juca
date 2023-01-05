@@ -1,6 +1,6 @@
 import { AsyncFunction } from "./lib.js"
 
-const verificationInterval = 66; //66 ≈ 15 tps // 33 ≈ 30 tps // 16 ≈ 60 tps
+const verificationInterval = 33; //66 ≈ 15 tps // 33 ≈ 30 tps // 16 ≈ 60 tps
 
 export let forsCmds = []
 

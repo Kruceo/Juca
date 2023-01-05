@@ -7,8 +7,8 @@ export default async function initPosProcess() {
     console.time('ff')
     document.body.querySelectorAll('*').forEach((each) => {
             let cmd = resolve(each)
+            if(!each.getAttribute('if')||!each.getAttribute('watch')||!each.getAttribute('pipe'))return
             forsCmds.push({key:each.getAttribute('key'),cmd})
-            if(each.getAttribute('if')||each.getAttribute('watch'))
             watchers.push({ key: each.getAttribute('key'), watch:  each.getAttribute('watch'),type:'watch' })  //add to watch list
             watchers.push({ key: each.getAttribute('key'), watch:  each.getAttribute('if'),type:'if' })  //add to watch list
             pipe(each)
