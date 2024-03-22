@@ -1,13 +1,12 @@
 # **Juca**
-<br>
+
 <div align='center'>
 <img src="./icon.png" width=128px>
-<a href="https://juca.kruceo.com">📚 <strong>Example</strong></a> ╽
-<a href="https://home.kruceo.com">🧒🏼 <strong>Author</strong></a> ╽
+    <br/>
+<a href="https://juca.kruceo.com">📚 <strong>Example</strong></a> |
+<a href="https://home.kruceo.com">🧒🏼 <strong>Author</strong></a> |
 <a href="https://home.kruceo.com/info">ℹ️ <strong>Info</strong></a>
 </div>
-<br>
-<br>
 
 
 ## Introduction
