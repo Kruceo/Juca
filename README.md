@@ -1,14 +1,5 @@
 # **Juca**
 
-<div align='center'>
-<img src="./icon.png" width=128px>
-    <br/>
-<a href="https://juca.kruceo.com">📚 <strong>Example</strong></a> |
-<a href="https://home.kruceo.com">🧒🏼 <strong>Author</strong></a> |
-<a href="https://home.kruceo.com/info">ℹ️ <strong>Info</strong></a>
-</div>
-
-
 ## Introduction
 
 Juca is a template engine, built to automate repetitive and non-intuitive processes of implementing Javascript directly in the look of your HTML.
